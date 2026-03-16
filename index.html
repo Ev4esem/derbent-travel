@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Derbent Travel — Авторские туры по Дагестану</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;color:#1a2e2e;background:#fff;overflow-x:hidden}
+
+    :root{
+      --teal:#1C4A47;
+      --teal-mid:#2B6260;
+      --orange:#F0A500;
+      --orange-h:#D4920A;
+      --cream:#F8F4EE;
+      --cream2:#FAF7F2;
+      --border:#E5DDD0;
+      --txt-mid:#4A6060;
+      --txt-light:#7A9090;
+    }
+
+    /* ══════════════ NAV ══════════════ */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:999;
+      height:70px;padding:0 5%;
+      display:flex;align-items:center;justify-content:space-between;
+      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      transition:box-shadow .3s;
+    }
+    nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+    .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+    .nav-logo-icon{width:36px;height:36px}
+    .nav-logo-text{font-size:18px;font-weight:700;color:var(--teal)}
+    .nav-menu{display:flex;gap:32px;list-style:none}
+    .nav-menu a{text-decoration:none;color:#1a2e2e;font-size:14.5px;font-weight:500;transition:color .2s}
+    .nav-menu a:hover{color:var(--teal)}
+    .nav-right{display:flex;align-items:center;gap:18px}
+    .nav-phone{display:flex;align-items:center;gap:7px;color:var(--orange);font-weight:600;font-size:14.5px;text-decoration:none}
+    .nav-phone svg{width:15px;height:15px;fill:var(--orange);flex-shrink:0}
+    .btn-book{background:var(--teal);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:background .2s}
+    .btn-book:hover{background:var(--teal-mid)}
+
+    /* ══════════════ HERO ══════════════ */
+    .hero{
+      height:100vh;min-height:640px;position:relative;
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:url('https://images.unsplash.com/photo-1564678677560-01cfd39f60e1?w=1920&q=80') center/cover no-repeat;
+      filter:brightness(.48);
+    }
+    .hero-content{position:relative;z-index:2;max-width:860px;padding:0 24px}
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(36px,5.8vw,72px);color:#fff;
+      line-height:1.13;margin-bottom:6px;font-weight:700;
+    }
+    .hero-accent{color:var(--orange);font-style:italic}
+    .hero-sub{
+      color:rgba(255,255,255,.82);font-size:17px;line-height:1.65;
+      margin:20px 0 36px;
+    }
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-h1{
+      border:2px solid #fff;color:#fff;
+      background:rgba(255,255,255,.13);backdrop-filter:blur(6px);
+      padding:13px 30px;border-radius:50px;font-size:15.5px;font-weight:600;
+      text-decoration:none;cursor:pointer;transition:all .2s;
+    }
+    .btn-h1:hover{background:#fff;color:var(--teal)}
+    .btn-h2{
+      border:2px solid rgba(255,255,255,.5);color:rgba(255,255,255,.88);
+      background:rgba(255,255,255,.07);
+      padding:13px 30px;border-radius:50px;font-size:15.5px;font-weight:500;
+      text-decoration:none;cursor:pointer;transition:all .2s;
+    }
+    .btn-h2:hover{background:rgba(255,255,255,.15)}
+    .hero-scroll{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+      color:rgba(255,255,255,.55);font-size:26px;
+      animation:hbounce 2.2s ease-in-out infinite;
+    }
+    @keyframes hbounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
+
+    /* ══════════════ SHARED ══════════════ */
+    .sec{padding:84px 5%}
+    .lbl{
+      color:var(--orange);font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+      display:flex;align-items:center;gap:10px;margin-bottom:10px;
+    }
+    .lbl::before{content:'';width:28px;height:2px;background:var(--orange)}
+    .lbl-c{color:var(--orange);font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:10px}
+    .ttl{font-family:'Playfair Display',serif;font-size:clamp(26px,3.8vw,44px);color:var(--teal);line-height:1.18}
+    .ttl-c{font-family:'Playfair Display',serif;font-size:clamp(26px,3.8vw,44px);color:var(--teal);line-height:1.18;text-align:center}
+    .inner{max-width:1200px;margin:0 auto}
+
+    /* ══════════════ ABOUT ══════════════ */
+    .about{background:var(--cream)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .about-text p{color:var(--txt-mid);font-size:15px;line-height:1.75;margin-top:18px}
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+    .feat{
+      background:#fff;border:1px solid var(--border);border-radius:12px;
+      padding:14px 18px;display:flex;align-items:center;gap:12px;
+      font-size:14px;font-weight:500;
+    }
+    .feat-ic{
+      width:36px;height:36px;background:#EEF7F5;border-radius:8px;
+      display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+    }
+    .about-imgs{position:relative;height:430px}
+    .ai-main{
+      position:absolute;left:0;top:0;width:74%;height:86%;
+      border-radius:16px;overflow:hidden;
+    }
+    .ai-main img{width:100%;height:100%;object-fit:cover}
+    .ai-sec{
+      position:absolute;right:0;bottom:0;width:54%;height:64%;
+      border-radius:16px;overflow:hidden;
+      border:4px solid #fff;box-shadow:0 10px 34px rgba(0,0,0,.13);
+    }
+    .ai-sec img{width:100%;height:100%;object-fit:cover}
+    .ai-badge{
+      position:absolute;top:44%;left:60%;transform:translate(-50%,-50%);
+      background:#fff;border-radius:50%;width:92px;height:92px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+      box-shadow:0 8px 32px rgba(0,0,0,.16);z-index:3;line-height:1.2;
+    }
+    .ai-num{font-size:25px;font-weight:700;color:var(--teal)}
+    .ai-lbl{font-size:10px;color:var(--txt-mid);text-transform:uppercase;letter-spacing:.5px}
+
+    /* ══════════════ WHY US ══════════════ */
+    .why{background:var(--cream2)}
+    .why-hd{text-align:center;margin-bottom:46px}
+    .why-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .wc{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px 22px}
+    .wc-ic{
+      width:52px;height:52px;background:#EEF5F5;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:15px;
+    }
+    .wc h3{font-size:15.5px;font-weight:700;color:#1a2e2e;margin-bottom:9px;line-height:1.3}
+    .wc p{font-size:13px;color:var(--txt-mid);line-height:1.6}
+
+    /* ══════════════ TOURS ══════════════ */
+    .tours-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:16px}
+    .filters{display:flex;gap:8px}
+    .fb{
+      padding:8px 20px;border-radius:50px;border:1.5px solid var(--border);
+      background:#fff;font-size:13px;font-weight:500;color:#1a2e2e;
+      cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;
+    }
+    .fb.on{background:var(--teal);border-color:var(--teal);color:#fff}
+    .fb:hover:not(.on){border-color:var(--teal);color:var(--teal)}
+    .tours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .tc{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff;transition:transform .22s,box-shadow .22s}
+    .tc:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.1)}
+    .tc-img{position:relative;height:200px;overflow:hidden}
+    .tc-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+    .tc:hover .tc-img img{transform:scale(1.06)}
+    .tbadge{
+      position:absolute;top:11px;left:11px;
+      background:rgba(28,74,71,.88);color:#fff;
+      padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:600;
+    }
+    .tbadge.hot{background:var(--orange)}
+    .trat{
+      position:absolute;top:11px;right:11px;
+      background:#fff;padding:4px 10px;border-radius:6px;
+      font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;
+    }
+    .trat::before{content:'★';color:var(--orange)}
+    .tc-body{padding:20px}
+    .tc-body h3{font-size:17.5px;font-weight:700;color:var(--teal);margin-bottom:9px}
+    .tc-loc{font-size:13px;color:var(--txt-mid);display:flex;align-items:flex-start;gap:5px;margin-bottom:13px}
+    .tc-inc{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid var(--border)}
+    .itag{background:#EEF7F5;color:var(--teal);font-size:12px;padding:4px 10px;border-radius:6px;display:flex;align-items:center;gap:4px}
+    .tc-ft{display:flex;align-items:center;justify-content:space-between}
+    .tc-pl{font-size:11px;color:var(--txt-light);margin-bottom:2px}
+    .tc-price{font-size:20px;font-weight:700;color:#1a2e2e}
+    .tc-btn{
+      width:40px;height:40px;background:var(--teal);border-radius:50%;
+      border:none;color:#fff;font-size:18px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;transition:background .2s;
+      flex-shrink:0;
+    }
+    .tc-btn:hover{background:var(--orange)}
+
+    /* ══════════════ PROGRAM ══════════════ */
+    .program{background:var(--cream)}
+    .prog-hd{text-align:center;margin-bottom:46px}
+    .prog-sub{color:var(--txt-mid);text-align:center;margin-top:9px;font-size:15px}
+    .prog-inner{max-width:800px;margin:0 auto}
+    .timeline{position:relative;padding-left:0}
+    .timeline::before{
+      content:'';position:absolute;left:20px;top:14px;bottom:14px;
+      width:2px;background:#C8E0DC;
+    }
+    .tl-item{position:relative;padding-left:56px;margin-bottom:22px}
+    .tl-dot{
+      position:absolute;left:13px;top:24px;
+      width:14px;height:14px;background:var(--teal);border-radius:50%;
+      border:3px solid #fff;box-shadow:0 0 0 2px var(--teal);
+    }
+    .tl-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 28px}
+    .tl-hd{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .day-b{background:#EEF5F5;color:var(--teal);padding:3px 11px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+    .tl-hd h3{font-size:16.5px;font-weight:700;color:#1a2e2e}
+    .tl-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+    .tl-list li{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--txt-mid);line-height:1.55}
+    .tl-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
+    .tl-list li strong{color:#1a2e2e}
+
+    /* ══════════════ GALLERY ══════════════ */
+    .gallery-hd{text-align:center;margin-bottom:38px}
+    .gal-grid{
+      display:grid;
+      grid-template-columns:1.45fr 1fr;
+      grid-template-rows:210px 210px 230px;
+      gap:12px;
+    }
+    .gi{border-radius:12px;overflow:hidden;position:relative}
+    .gi img{width:100%;height:100%;object-fit:cover;transition:transform .32s;display:block}
+    .gi:hover img{transform:scale(1.05)}
+    .gi.tall{grid-row:span 2}
+    .gi-cap{
+      position:absolute;bottom:11px;left:11px;
+      background:rgba(0,0,0,.48);color:#fff;
+      padding:3px 10px;border-radius:6px;font-size:11.5px;
+    }
+    .gal-bot{display:grid;grid-template-columns:1fr 1fr;gap:12px;grid-column:1/-1}
+
+    /* ══════════════ HOW IT WORKS ══════════════ */
+    .how{background:var(--teal);padding:84px 5%}
+    .how-in{max-width:1100px;margin:0 auto;text-align:center}
+    .how-in h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);color:#fff;margin-bottom:11px}
+    .how-in>p{color:rgba(255,255,255,.7);margin-bottom:52px;font-size:15px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative}
+    .steps::before{
+      content:'';position:absolute;top:27px;left:13%;right:13%;
+      height:1px;background:rgba(255,255,255,.18);z-index:0;
+    }
+    .step{position:relative;z-index:1;text-align:center}
+    .snum{
+      width:54px;height:54px;background:var(--orange);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;font-weight:700;color:#fff;margin:0 auto 18px;
+    }
+    .step h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:9px}
+    .step p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+
+    /* ══════════════ REVIEWS ══════════════ */
+    .reviews{background:var(--cream2)}
+    .rev-hd{text-align:center;margin-bottom:46px}
+    .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .rc{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px}
+    .rstars{color:var(--orange);font-size:17px;margin-bottom:14px}
+    .rtext{font-size:13.5px;color:var(--txt-mid);line-height:1.72;font-style:italic;margin-bottom:18px}
+    .rauthor{display:flex;align-items:center;gap:11px}
+    .rav{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0}
+    .rav img{width:100%;height:100%;object-fit:cover}
+    .rname{font-weight:700;font-size:14px;color:#1a2e2e}
+    .rtour{font-size:11.5px;color:var(--txt-light)}
+
+    /* ══════════════ BOOKING CTA ══════════════ */
+    .cta-wrap{
+      padding:84px 5%;position:relative;
+      background:linear-gradient(135deg,#0d2e2c 0%,#1C4A47 60%,#2B6260 100%);
+    }
+    .cta-wrap::before{
+      content:'';position:absolute;inset:0;
+      background:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=70') center/cover no-repeat;
+      opacity:.12;
+    }
+    .cta-in{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+    .cta-card{
+      background:#fff;border-radius:20px;overflow:hidden;
+      display:grid;grid-template-columns:1fr 1fr;
+      box-shadow:0 24px 64px rgba(0,0,0,.22);
+    }
+    .cta-l{background:var(--teal);padding:48px 44px;color:#fff}
+    .cta-l h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;line-height:1.2;margin-bottom:14px}
+    .cta-l p{color:rgba(255,255,255,.75);font-size:14px;line-height:1.72;margin-bottom:32px}
+    .cta-contacts{display:flex;flex-direction:column;gap:14px}
+    .cta-ci{display:flex;align-items:center;gap:13px}
+    .cta-ic{
+      width:40px;height:40px;background:rgba(255,255,255,.12);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+    }
+    .cta-cl{font-size:10.5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:1px}
+    .cta-cv{font-size:15.5px;font-weight:600;color:#fff}
+    .cta-r{padding:48px 44px;background:#fff}
+    .cta-r h3{font-size:21px;font-weight:700;color:#1a2e2e;margin-bottom:26px}
+    .fg{margin-bottom:16px}
+    .fg label{display:block;font-size:13px;font-weight:600;color:#1a2e2e;margin-bottom:5px}
+    .fg input,.fg select{
+      width:100%;padding:12px 15px;border:1.5px solid var(--border);border-radius:8px;
+      font-size:14px;color:#1a2e2e;font-family:'Inter',sans-serif;
+      outline:none;background:#fff;transition:border-color .2s;
+    }
+    .fg input:focus,.fg select:focus{border-color:var(--teal)}
+    .fg input::placeholder{color:var(--txt-light)}
+    .btn-form{
+      width:100%;background:var(--orange);color:#fff;border:none;
+      padding:14px;border-radius:8px;font-size:15.5px;font-weight:700;
+      cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;
+    }
+    .btn-form:hover{background:var(--orange-h)}
+    .fnote{text-align:center;font-size:11.5px;color:var(--txt-light);margin-top:9px}
+
+    /* ══════════════ CONTACTS ══════════════ */
+    .contacts{background:#fff}
+    .con-hd{text-align:center;margin-bottom:46px}
+    .con-grid{display:grid;grid-template-columns:1fr 2fr;gap:22px}
+    .con-card{background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:30px}
+    .con-card h3{font-size:15px;font-weight:700;color:#1a2e2e;margin-bottom:22px;letter-spacing:.4px}
+    .con-item{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px;font-size:14px}
+    .con-ic{color:var(--teal);font-size:15px;flex-shrink:0;margin-top:2px}
+    .con-lbl{font-size:10.5px;color:var(--txt-light);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+    .con-val{color:#1a2e2e;font-weight:500;line-height:1.4}
+    .con-req{margin-top:22px;padding-top:22px;border-top:1px solid var(--border);font-size:12px;color:var(--txt-light);line-height:1.8}
+    .map-ph{
+      background:#F0EFED;border:1px solid var(--border);border-radius:16px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      min-height:300px;color:var(--txt-light);
+    }
+    .map-ph svg{opacity:.35}
+    .map-ph p{font-size:13px}
+    .map-ph .map-ttl{font-size:14px;font-weight:600;color:#555}
+
+    /* ══════════════ FOOTER ══════════════ */
+    footer{background:var(--teal);padding:60px 5% 28px;color:rgba(255,255,255,.65)}
+    .ft-in{max-width:1200px;margin:0 auto}
+    .ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:46px}
+    .ft-desc{font-size:13px;line-height:1.72;margin:14px 0 18px;color:rgba(255,255,255,.58)}
+    .ft-social{display:flex;gap:9px}
+    .soc{
+      width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:8px;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:13px;text-decoration:none;transition:background .2s;font-weight:600;
+    }
+    .soc:hover{background:rgba(255,255,255,.2)}
+    .ft-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:18px}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+    .ft-links a{color:rgba(255,255,255,.58);text-decoration:none;font-size:13px;transition:color .2s}
+    .ft-links a:hover{color:#fff}
+    .ft-ci{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:rgba(255,255,255,.58);margin-bottom:11px}
+    .ft-bot{
+      border-top:1px solid rgba(255,255,255,.1);padding-top:22px;
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:12px;color:rgba(255,255,255,.38);flex-wrap:wrap;gap:10px;
+    }
+    .ft-bot a{color:rgba(255,255,255,.38);text-decoration:none;margin-left:18px}
+    .ft-bot a:hover{color:rgba(255,255,255,.7)}
+
+    /* ══════════════ WHATSAPP FLOAT ══════════════ */
+    .wa-float{
+      position:fixed;bottom:28px;right:28px;width:56px;height:56px;
+      background:#25D366;border-radius:50%;z-index:998;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 22px rgba(37,211,102,.42);cursor:pointer;
+      transition:transform .2s;text-decoration:none;
+    }
+    .wa-float:hover{transform:scale(1.09)}
+
+    /* ══════════════ RESPONSIVE ══════════════ */
+    @media(max-width:1024px){
+      .why-cards{grid-template-columns:repeat(2,1fr)}
+      .tours-grid{grid-template-columns:repeat(2,1fr)}
+      .ft-top{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:820px){
+      .about-grid{grid-template-columns:1fr;gap:40px}
+      .about-imgs{height:290px}
+      .steps{grid-template-columns:repeat(2,1fr);gap:24px}
+      .steps::before{display:none}
+      .rev-grid{grid-template-columns:1fr}
+      .cta-card{grid-template-columns:1fr}
+      .con-grid{grid-template-columns:1fr}
+      .gi.tall{grid-row:span 1}
+    }
+    @media(max-width:600px){
+      nav{padding:0 4%}
+      .nav-menu{display:none}
+      .nav-phone span.ph-text{display:none}
+      .sec{padding:60px 5%}
+      .hero h1{font-size:clamp(30px,9vw,48px);line-height:1.16}
+      .hero-sub{font-size:15px;margin:16px 0 28px}
+      .btn-h1,.btn-h2{padding:12px 22px;font-size:14px}
+      .hero-btns{gap:10px}
+      .tours-grid{grid-template-columns:1fr}
+      .why-cards{grid-template-columns:1fr}
+      .ft-top{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr;gap:20px}
+      .snum{width:46px;height:46px;font-size:18px}
+      .about-imgs{height:260px}
+      .ai-badge{width:78px;height:78px}
+      .ai-num{font-size:20px}
+      .cta-l{padding:32px 28px}
+      .cta-r{padding:32px 28px}
+      .feat-grid{grid-template-columns:1fr 1fr}
+      .rev-grid{grid-template-columns:1fr}
+      .tours-hd{flex-direction:column;align-items:flex-start}
+      .filters{flex-wrap:wrap}
+    }
+    @media(max-width:400px){
+      .hero h1{font-size:28px}
+      .ttl,.ttl-c{font-size:26px}
+      .steps{grid-template-columns:1fr}
+      .feat-grid{grid-template-columns:1fr}
+      .nav-phone{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none">
+      <path d="M5 28 L11 17 L17 23 L23 12 L31 28 Z" fill="#1C4A47" opacity=".25"/>
+      <path d="M5 28 L11 18 L17 24 L23 13 L31 28" stroke="#1C4A47" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="23" cy="10" r="3.2" fill="#F0A500"/>
+    </svg>
+    <span class="nav-logo-text">DerbentTravel</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#tours">Туры</a></li>
+    <li><a href="#about">О компании</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+79898945005" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1-.23 1.1.37 2.3.57 3.6.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C9.61 21 3 14.39 3 6c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.32.02.67-.23.97L6.6 10.8z"/></svg>
+      +7 (989) 894-50-05
+    </a>
+    <a href="#booking" class="btn-book">Забронировать</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Откройте настоящий Дагестан<br><span class="hero-accent">с Derbent Travel</span></h1>
+    <p class="hero-sub">Авторские туры по самым красивым местам Дагестана.<br>Трансфер, проживание, гиды и программа — всё включено.</p>
+    <div class="hero-btns">
+      <a href="#tours" class="btn-h1">Выбрать тур →</a>
+      <a href="#booking" class="btn-h2">Получить консультацию</a>
+    </div>
+  </div>
+  <div class="hero-scroll">⌄</div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="sec about" id="about">
+  <div class="inner about-grid">
+    <div>
+      <div class="lbl">О компании</div>
+      <h2 class="ttl">Ваше путешествие по Дагестану —<br><span style="color:#3D8C85">в надёжных руках</span></h2>
+      <p>Дагестан — это место, где древняя история встречается с величественными горами. Команда Derbent Travel создаёт авторские туры, где каждая деталь продумана до мелочей.</p>
+      <p>Мы берём на себя всё, вам остаётся только наслаждаться путешествием:</p>
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-ic">🚗</div>Трансфер</div>
+        <div class="feat"><div class="feat-ic">🛏️</div>Проживание</div>
+        <div class="feat"><div class="feat-ic">🍽️</div>Питание</div>
+        <div class="feat"><div class="feat-ic">📷</div>Экскурсии</div>
+      </div>
+    </div>
+    <div class="about-imgs">
+      <div class="ai-main">
+        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6aeee41?w=700&q=80" alt="Горы Дагестана"/>
+      </div>
+      <div class="ai-sec">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=80" alt="Команда гидов"/>
+      </div>
+      <div class="ai-badge">
+        <span class="ai-num">5+</span>
+        <span class="ai-lbl">ЛЕТ<br>ОПЫТА</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY US ══ -->
+<section class="sec why">
+  <div class="inner">
+    <div class="why-hd">
+      <div class="lbl-c">Преимущества</div>
+      <h2 class="ttl-c">Почему выбирают нас</h2>
+    </div>
+    <div class="why-cards">
+      <div class="wc">
+        <div class="wc-ic">🛡️</div>
+        <h3>Безопасный транспорт</h3>
+        <p>Современные автомобили и профессиональные водители с многолетним опытом вождения по горным дорогам Дагестана.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-ic">👤</div>
+        <h3>Профессиональные гиды</h3>
+        <p>Экскурсии проводят дипломированные местные гиды, влюблённые в историю и природу Дагестана.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-ic">🎒</div>
+        <h3>Всё включено</h3>
+        <p>Проживание, трёхразовое питание и все экскурсии уже входят в программу тура — никаких скрытых доплат.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-ic">🎧</div>
+        <h3>Поддержка 24/7</h3>
+        <p>Наша команда всегда на связи, готова помочь с любым вопросом до, во время и после поездки.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TOURS ══ -->
+<section class="sec" id="tours" style="background:#fff">
+  <div class="inner">
+    <div class="tours-hd">
+      <div>
+        <div class="lbl">Каталог</div>
+        <h2 class="ttl">Популярные туры</h2>
+      </div>
+      <div class="filters">
+        <button class="fb on" onclick="filterTours('all',this)">Все туры</button>
+        <button class="fb" onclick="filterTours('multi',this)">Многодневные</button>
+        <button class="fb" onclick="filterTours('single',this)">Однодневные</button>
+      </div>
+    </div>
+    <div class="tours-grid" id="tg">
+      <!-- Тур 1 -->
+      <div class="tc" data-type="multi">
+        <div class="tc-img">
+          <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Гранд Дагестан"/>
+          <span class="tbadge">3 дня / 2 ночи</span>
+          <span class="trat">4.9</span>
+        </div>
+        <div class="tc-body">
+          <h3>Гранд Дагестан</h3>
+          <div class="tc-loc">🏔️&nbsp;Сулакский каньон • Гоор • Язык Тролля • Хунзах</div>
+          <div class="tc-inc">
+            <span class="itag">📶 Отель</span>
+            <span class="itag">🍽️ Питание</span>
+            <span class="itag">🚗 Трансфер</span>
+          </div>
+          <div class="tc-ft">
+            <div><div class="tc-pl">Стоимость от</div><div class="tc-price">25 000 ₽</div></div>
+            <button class="tc-btn" onclick="goToBooking()">→</button>
+          </div>
+        </div>
+      </div>
+      <!-- Тур 2 -->
+      <div class="tc" data-type="multi">
+        <div class="tc-img">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Жемчужины Кавказа"/>
+          <span class="tbadge hot">Хит продаж • 5 дней</span>
+          <span class="trat">5.0</span>
+        </div>
+        <div class="tc-body">
+          <h3>Жемчужины Кавказа</h3>
+          <div class="tc-loc">🏔️&nbsp;Сулак • Гамсутль • Хунзах • Дербент</div>
+          <div class="tc-inc">
+            <span class="itag">📶 Отель</span>
+            <span class="itag">🍽️ Питание</span>
+            <span class="itag">✈️ Билеты</span>
+          </div>
+          <div class="tc-ft">
+            <div><div class="tc-pl">Стоимость от</div><div class="tc-price">42 000 ₽</div></div>
+            <button class="tc-btn" onclick="goToBooking()">→</button>
+          </div>
+        </div>
+      </div>
+      <!-- Тур 3 -->
+      <div class="tc" data-type="single">
+        <div class="tc-img">
+          <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80" alt="Сулакский каньон"/>
+          <span class="tbadge">1 день</span>
+          <span class="trat">4.8</span>
+        </div>
+        <div class="tc-body">
+          <h3>Сулакский каньон (Премиум)</h3>
+          <div class="tc-loc">🏔️&nbsp;Бархан Сарыкум • Каньон • Пещера • Катер</div>
+          <div class="tc-inc">
+            <span class="itag">🚙 Джипинг</span>
+            <span class="itag">⛵ Катер</span>
+            <span class="itag">🍽️ Обед</span>
+          </div>
+          <div class="tc-ft">
+            <div><div class="tc-pl">Стоимость от</div><div class="tc-price">3 300 ₽</div></div>
+            <button class="tc-btn" onclick="goToBooking()">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAM ══ -->
+<section class="sec program" id="program">
+  <div class="inner prog-hd" style="max-width:800px">
+    <div class="lbl-c">Программа</div>
+    <h2 class="ttl-c">Пример программы тура (3 дня)</h2>
+    <p class="prog-sub">Насыщенная программа, охватывающая самые топовые локации</p>
+  </div>
+  <div class="prog-inner">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-hd"><span class="day-b">День 1</span><h3>Чудеса природы и адреналин</h3></div>
+          <ul class="tl-list">
+            <li><strong>Бархан Сарыкум</strong> — крупнейшая песчаная дюна Евразии</li>
+            <li><strong>Сулакский каньон</strong> — смотровые площадки с панорамным видом</li>
+            <li><strong>Пещера Нохъо</strong> — подвесной мост над пропастью</li>
+            <li><strong>Джипинг и катер</strong> — спуск в каньон и прогулка по бирюзовой воде</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-hd"><span class="day-b">День 2</span><h3>Ущелья и горы</h3></div>
+          <ul class="tl-list">
+            <li><strong>Карадахская теснина</strong> — уникальное узкое ущелье, "Ворота чудес"</li>
+            <li><strong>Древний Гоор</strong> — башенный комплекс на краю обрыва</li>
+            <li><strong>Язык Тролля</strong> — знаменитый скальный выступ для фото</li>
+            <li><strong>Рафтинг</strong> — сплав по горной реке (по желанию)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-hd"><span class="day-b">День 3</span><h3>Плато и водопады</h3></div>
+          <ul class="tl-list">
+            <li><strong>Хунзахское плато</strong> — самое широкое горное плато Дагестана</li>
+            <li><strong>Водопады Тобот и Итлятляр</strong> — мощные потоки воды, падающие в каньон</li>
+            <li><strong>Плато Матлас</strong> — смотровые площадки и экстрим-парк</li>
+            <li><strong>Каменная чаша</strong> — скрытые лабиринты внутри скал</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="sec" style="background:#fff">
+  <div class="inner">
+    <div class="gallery-hd">
+      <div class="lbl-c">Впечатления</div>
+      <h2 class="ttl-c">Галерея путешествий</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1.45fr 1fr;grid-template-rows:210px 210px;gap:12px;margin-bottom:12px">
+      <div class="gi tall" style="grid-row:span 2">
+        <img src="https://images.unsplash.com/photo-1564678677560-01cfd39f60e1?w=800&q=80" alt="Сулакский каньон"/>
+        <div class="gi-cap">Сулакский каньон</div>
+      </div>
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Горы Дагестана"/>
+      </div>
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Дагестанские ремёсла"/>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:230px">
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80" alt="Водопад"/>
+      </div>
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Счастливые туристы"/>
+        <div class="gi-cap">Счастливые туристы</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how">
+  <div class="how-in">
+    <h2>Как проходит тур</h2>
+    <p>Всего 4 простых шага отделяют вас от незабываемого путешествия</p>
+    <div class="steps">
+      <div class="step">
+        <div class="snum">1</div>
+        <h3>Вы выбираете тур</h3>
+        <p>Изучите программы и выберите подходящую или запросите индивидуальную.</p>
+      </div>
+      <div class="step">
+        <div class="snum">2</div>
+        <h3>Оставляете заявку</h3>
+        <p>Заполните форму на сайте или напишите нам в WhatsApp.</p>
+      </div>
+      <div class="step">
+        <div class="snum">3</div>
+        <h3>Мы бронируем</h3>
+        <p>Связываемся с вами, уточняем детали, подписываем договор и бронируем места.</p>
+      </div>
+      <div class="step">
+        <div class="snum">4</div>
+        <h3>Вы путешествуете</h3>
+        <p>Приезжаете в Дагестан и наслаждаетесь отдыхом, а мы заботимся обо всём остальном.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ══ -->
+<section class="sec reviews" id="reviews">
+  <div class="inner">
+    <div class="rev-hd">
+      <div class="lbl-c">Отзывы</div>
+      <h2 class="ttl-c">Что говорят наши туристы</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rc">
+        <div class="rstars">★★★★★</div>
+        <p class="rtext">"Невероятное путешествие! Дагестан превзошёл все ожидания, а организация от Derbent Travel была на высшем уровне. Гид Магомед рассказывал такие интересные истории, что мы слушали с открытым ртом. Спасибо за эти эмоции!"</p>
+        <div class="rauthor">
+          <div class="rav"><img src="https://i.pravatar.cc/100?img=5" alt="Мария В."/></div>
+          <div><div class="rname">Мария В.</div><div class="rtour">Тур «Жемчужины Кавказа»</div></div>
+        </div>
+      </div>
+      <div class="rc">
+        <div class="rstars">★★★★★</div>
+        <p class="rtext">"Ездили компанией друзей на 3 дня. Очень насыщенная программа, комфортные машины, вкуснейшая местная еда. Особенно впечатлил Сулакский каньон на катере. Ребята молодцы, всё чётко по таймингу."</p>
+        <div class="rauthor">
+          <div class="rav"><img src="https://i.pravatar.cc/100?img=12" alt="Алексей С."/></div>
+          <div><div class="rname">Алексей С.</div><div class="rtour">Тур «Гранд Дагестан»</div></div>
+        </div>
+      </div>
+      <div class="rc">
+        <div class="rstars">★★★★<span style="color:#ddd">★</span></div>
+        <p class="rtext">"Брали индивидуальную экскурсию в Гамсутль. Водитель приехал вовремя, машина чистая, с кондиционером. Виды потрясающие, фото получились просто космос. Обязательно вернёмся ещё!"</p>
+        <div class="rauthor">
+          <div class="rav"><img src="https://i.pravatar.cc/100?img=9" alt="Елена К."/></div>
+          <div><div class="rname">Елена К.</div><div class="rtour">Индивидуальная экскурсия</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BOOKING ══ -->
+<div class="cta-wrap" id="booking">
+  <div class="cta-in">
+    <div class="cta-card">
+      <div class="cta-l">
+        <h2>Готовы открыть Дагестан?</h2>
+        <p>Оставьте заявку, и наш менеджер свяжется с вами в течение 15 минут, чтобы подобрать идеальный тур под ваши пожелания и даты.</p>
+        <div class="cta-contacts">
+          <div class="cta-ci">
+            <div class="cta-ic">💬</div>
+            <div><div class="cta-cl">Быстрая связь</div><div class="cta-cv">+7 (989) 894-50-05</div></div>
+          </div>
+          <div class="cta-ci">
+            <div class="cta-ic">📍</div>
+            <div><div class="cta-cl">Наш офис</div><div class="cta-cv">г. Дербент, ул. Х. Тагиева 35Б</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cta-r">
+        <h3>Оставить заявку</h3>
+        <form onsubmit="return sendForm(event)">
+          <div class="fg">
+            <label>Ваше имя</label>
+            <input type="text" placeholder="Иван Иванов" required/>
+          </div>
+          <div class="fg">
+            <label>Телефон</label>
+            <input type="tel" placeholder="+7 (999) 000-00-00" required/>
+          </div>
+          <div class="fg">
+            <label>Интересующий тур</label>
+            <select>
+              <option value="">Помогите выбрать</option>
+              <option>Гранд Дагестан (3 дня)</option>
+              <option>Жемчужины Кавказа (5 дней)</option>
+              <option>Сулакский каньон — 1 день</option>
+              <option>Индивидуальный тур</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-form">Забронировать тур</button>
+          <p class="fnote">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACTS ══ -->
+<section class="sec contacts" id="contacts">
+  <div class="inner">
+    <div class="con-hd">
+      <div class="lbl-c">Связь с нами</div>
+      <h2 class="ttl-c">Контакты</h2>
+    </div>
+    <div class="con-grid">
+      <div class="con-card">
+        <h3>ООО «ДЕРБЕНТ-ТРЕВЕЛ»</h3>
+        <div class="con-item">
+          <div class="con-ic">📞</div>
+          <div><div class="con-lbl">Телефон</div><div class="con-val">+7 (989) 894-50-05</div></div>
+        </div>
+        <div class="con-item">
+          <div class="con-ic">📍</div>
+          <div><div class="con-lbl">Адрес</div><div class="con-val">г. Дербент, ул. Хандадаша Тагиева 35Б</div></div>
+        </div>
+        <div class="con-item">
+          <div class="con-ic">🕐</div>
+          <div><div class="con-lbl">График работы</div><div class="con-val">Ежедневно 11:00 — 00:00</div></div>
+        </div>
+        <div class="con-req">
+          <strong>Реквизиты:</strong><br>
+          ИНН: 0500043926<br>
+          ОГРН: 1250500018702
+        </div>
+      </div>
+      <div class="map-ph">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.4">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p class="map-ttl">Интерактивная карта (Yandex / Google)</p>
+        <p>г. Дербент, ул. Хандадаша Тагиева 35Б</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div>
+        <a href="#" class="nav-logo">
+          <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none">
+            <path d="M5 28 L11 17 L17 23 L23 12 L31 28 Z" fill="white" opacity=".2"/>
+            <path d="M5 28 L11 18 L17 24 L23 13 L31 28" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="23" cy="10" r="3.2" fill="#F0A500"/>
+          </svg>
+          <span class="nav-logo-text" style="color:#fff">DerbentTravel</span>
+        </a>
+        <p class="ft-desc">Авторские туры по самым красивым местам Дагестана. Откройте для себя горы, каньоны и гостеприимство Кавказа вместе с нами.</p>
+        <div class="ft-social">
+          <a class="soc" href="#" title="ВКонтакте">ВК</a>
+          <a class="soc" href="#" title="Telegram">✈</a>
+          <a class="soc" href="#" title="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Меню</h4>
+        <ul class="ft-links">
+          <li><a href="#tours">Туры</a></li>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#program">Программа</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Популярное</h4>
+        <ul class="ft-links">
+          <li><a href="#">Сулакский каньон</a></li>
+          <li><a href="#">Гамсутль</a></li>
+          <li><a href="#">Тур на 3 дня</a></li>
+          <li><a href="#">Тур на 5 дней</a></li>
+          <li><a href="#">Индивидуальные туры</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Контакты</h4>
+        <div class="ft-ci"><span>📞</span><span>+7 (989) 894-50-05</span></div>
+        <div class="ft-ci"><span>💬</span><a href="#" style="color:rgba(255,255,255,.58);text-decoration:none">Написать в WhatsApp</a></div>
+        <div class="ft-ci"><span>📍</span><span>г. Дербент, ул. Х. Тагиева 35Б</span></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2023 ООО «ДЕРБЕНТ-ТРЕВЕЛ». Все права защищены.</span>
+      <div>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Договор оферты</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP FLOAT ══ -->
+<a href="https://wa.me/79898945005" class="wa-float" title="WhatsApp">
+  <svg width="27" height="27" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50)
+  })
+
+  // Tour filter
+  function filterTours(type, btn) {
+    document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'))
+    btn.classList.add('on')
+    document.querySelectorAll('#tg .tc').forEach(card => {
+      card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none'
+    })
+  }
+
+  // Go to booking
+  function goToBooking() {
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })
+  }
+
+  // Form submit
+  function sendForm(e) {
+    e.preventDefault()
+    const btn = e.target.querySelector('.btn-form')
+    btn.textContent = '✓ Заявка отправлена!'
+    btn.style.background = '#2B8C60'
+    setTimeout(() => {
+      btn.textContent = 'Забронировать тур'
+      btn.style.background = ''
+      e.target.reset()
+    }, 3500)
+    return false
+  }
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const tgt = document.querySelector(a.getAttribute('href'))
+      if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth' }) }
+    })
+  })
+</script>
+</body>
+</html>
