@@ -265,27 +265,38 @@
     /* яндекс-шапка */
     .ya-header{
       display:flex;align-items:center;justify-content:center;
-      gap:28px;flex-wrap:wrap;
+      gap:28px;flex-wrap:nowrap;
       background:#fff;border:1px solid var(--border);border-radius:16px;
       padding:22px 32px;margin-bottom:36px;
     }
-    .ya-logo{display:flex;align-items:center;gap:10px}
+    .ya-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
     .ya-logo svg{width:28px;height:28px}
     .ya-logo-txt{font-size:16px;font-weight:700;color:#FF0000}
-    .ya-score{display:flex;align-items:center;gap:10px}
+    .ya-score{display:flex;align-items:center;gap:10px;flex-shrink:0}
     .ya-num{font-size:36px;font-weight:700;color:#1a2e2e;line-height:1}
     .ya-right{}
     .ya-stars{color:#FFC700;font-size:18px;letter-spacing:1px;line-height:1}
     .ya-count{font-size:12px;color:var(--txt-light);margin-top:2px}
-    .ya-divider{width:1px;height:48px;background:var(--border)}
+    .ya-divider{width:1px;height:48px;background:var(--border);flex-shrink:0}
     .ya-btn{
       display:inline-flex;align-items:center;gap:8px;
       background:#FF0000;color:#fff;
       padding:11px 22px;border-radius:10px;
       font-size:13.5px;font-weight:600;text-decoration:none;
-      transition:background .2s;white-space:nowrap;
+      transition:background .2s;white-space:nowrap;flex-shrink:0;
     }
     .ya-btn:hover{background:#CC0000}
+    @media(max-width:640px){
+      .ya-header{
+        flex-direction:column;align-items:stretch;
+        gap:16px;padding:20px 20px;
+      }
+      .ya-divider{display:none}
+      .ya-logo{justify-content:center}
+      .ya-score{justify-content:center}
+      .ya-num{font-size:30px}
+      .ya-btn{justify-content:center;width:100%;padding:13px 20px}
+    }
     /* карточки */
     .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
     .rc.wide{grid-column:span 2}
@@ -819,7 +830,7 @@
         </ul>
       </div>
       <div class="pd-photo">
-        <img src="https://images.unsplash.com/photo-lkZA9ex7mhY?w=900&q=80&fit=crop" alt="Сулакский каньон — вид с обрыва" loading="lazy"/>
+        <img src="img/сулакский.jpg" alt="Сулакский каньон — вид с обрыва" loading="lazy"/>
         <div class="pd-photo-overlay"></div>
         <div class="pd-num">1</div>
       </div>
@@ -838,7 +849,7 @@
         </ul>
       </div>
       <div class="pd-photo">
-        <img src="https://images.unsplash.com/photo-kzEFwhXPXwo?w=900&q=80&fit=crop" alt="Карадахская теснина — узкое ущелье" loading="lazy"/>
+        <img src="img/тесница.jpg" alt="Карадахская теснина — узкое ущелье" loading="lazy"/>
         <div class="pd-photo-overlay"></div>
         <div class="pd-num">2</div>
       </div>
@@ -857,7 +868,7 @@
         </ul>
       </div>
       <div class="pd-photo">
-        <img src="https://images.unsplash.com/photo-P1PxzWoqoA8?w=900&q=80&fit=crop" alt="Водопад Тобот — Хунзахское плато, Дагестан" loading="lazy"/>
+        <img src="img/tobot2.jpg" alt="Водопад Тобот — Хунзахское плато, Дагестан" loading="lazy"/>
         <div class="pd-photo-overlay"></div>
         <div class="pd-num">3</div>
       </div>
@@ -967,7 +978,7 @@
       </div>
       <div class="ya-divider"></div>
       <div class="ya-score">
-        <span class="ya-num">4.9</span>
+        <span class="ya-num">5.0</span>
         <div class="ya-right">
           <div class="ya-stars">★★★★★</div>
           <div class="ya-count">Derbent Travel · Дербент</div>
@@ -985,10 +996,6 @@
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Гостили в Дагестане в июле этого года, а именно в Дербенте! Хочется отметить красоту этого края, лучше гор могут быть только горы! И помогли увидеть всю красоту нам местные ребята из 5 звёзд — Derbent Travel. Спасибо за тёплый приём и незабываемые впечатления!"</p>
         <div class="r-photos">
@@ -999,17 +1006,12 @@
           <div class="rav">О</div>
           <div>
             <div class="rname">Ольга М.</div>
-            <div class="rtour">Знаток города · 4 уровня · 2 сентября 2023</div>
           </div>
         </div>
       </div>
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Отличная организация работы, особенно радует незабываемые поездки с гид водителем Русланом. Всё подробно рассказал, показал. Одним словом — профессор своего дела."</p>
         <div class="r-photos">
@@ -1020,17 +1022,12 @@
           <div class="rav" style="background:#8B4513">А</div>
           <div>
             <div class="rname">Axmed Arsenov</div>
-            <div class="rtour">Знаток города · 3 уровня · 2 сентября 2023</div>
           </div>
         </div>
       </div>
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Эту красоту должен посмотреть каждый! Необыкновенно всё: величественные горы, шумные водопады, нескончаемые ущелья… Спасибо гиду Руслану!"</p>
         <div class="r-photos">
@@ -1042,17 +1039,12 @@
           <div class="rav" style="background:#7B5EA7">Н</div>
           <div>
             <div class="rname">Наталья Назарова</div>
-            <div class="rtour">Знаток города · 14 уровня · 15 сентября 2023</div>
           </div>
         </div>
       </div>
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Спасибо компании Дербент Трэвел за отличную организацию тура в Сулакский каньон. Гид Руслан великолепно всё рассказал — подробно и интересно! Виды очень красивые, природа завораживает! Буду рекомендовать друзьям и родственникам!"</p>
         <div class="r-photos">
@@ -1063,41 +1055,30 @@
           <div class="rav" style="background:#C0637A">Е</div>
           <div>
             <div class="rname">Елизавета Дробченко</div>
-            <div class="rtour">Знаток города · 6 уровня · 10 сентября 2023</div>
           </div>
         </div>
       </div>
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Отдыхали в Дагестане. Остались очень довольны отдыхом и под большим впечатлением. Какие красоты и отличные места этого края. Особо хочется поблагодарить нашего гида Руслана за отличное сопровождение!"</p>
         <div class="rauthor">
           <div class="rav" style="background:#4A7FA5">Ш</div>
           <div>
             <div class="rname">Шахсен Г.</div>
-            <div class="rtour">Знаток города · 2 уровня · 3 сентября 2023</div>
           </div>
         </div>
       </div>
       <div class="rc">
         <div class="rc-top">
           <div class="rstars">★★★★★</div>
-          <div class="rc-src">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
-            Яндекс
-          </div>
         </div>
         <p class="rtext">"Все экскурсии были интересными и информативными. Благодарю особенно гида-водителя Руслана за организацию тура. Очень внимательный, чуткий, отзывчивый человек. Рекомендую тем, кто хочет отдохнуть в просторах Дагестана."</p>
         <div class="rauthor">
           <div class="rav" style="background:#3D8C85">Н</div>
           <div>
             <div class="rname">Нурижат Алибекова</div>
-            <div class="rtour">Знаток города · 3 уровня · 2 сентября 2023</div>
           </div>
         </div>
       </div>
