@@ -50,12 +50,14 @@
     .hero{
       height:100vh;min-height:640px;position:relative;
       display:flex;align-items:center;justify-content:center;text-align:center;
-      overflow:hidden;
+      overflow:hidden;background:#0d2e2c;
     }
     .hero-bg{
       position:absolute;inset:0;
-      background:url('https://images.unsplash.com/photo-1564678677560-01cfd39f60e1?w=1920&q=80') center/cover no-repeat;
-      filter:brightness(.48);
+      background:
+        url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&q=80') center/cover no-repeat,
+        linear-gradient(160deg,#0a2322 0%,#1C4A47 60%,#2B6260 100%);
+      filter:brightness(.52);
     }
     .hero-content{position:relative;z-index:2;max-width:860px;padding:0 24px}
     .hero h1{
@@ -258,16 +260,55 @@
 
     /* ══════════════ REVIEWS ══════════════ */
     .reviews{background:var(--cream2)}
-    .rev-hd{text-align:center;margin-bottom:46px}
+    /* reviews */
+    .rev-hd{text-align:center;margin-bottom:36px}
+    /* яндекс-шапка */
+    .ya-header{
+      display:flex;align-items:center;justify-content:center;
+      gap:28px;flex-wrap:wrap;
+      background:#fff;border:1px solid var(--border);border-radius:16px;
+      padding:22px 32px;margin-bottom:36px;
+    }
+    .ya-logo{display:flex;align-items:center;gap:10px}
+    .ya-logo svg{width:28px;height:28px}
+    .ya-logo-txt{font-size:16px;font-weight:700;color:#FF0000}
+    .ya-score{display:flex;align-items:center;gap:10px}
+    .ya-num{font-size:36px;font-weight:700;color:#1a2e2e;line-height:1}
+    .ya-right{}
+    .ya-stars{color:#FFC700;font-size:18px;letter-spacing:1px;line-height:1}
+    .ya-count{font-size:12px;color:var(--txt-light);margin-top:2px}
+    .ya-divider{width:1px;height:48px;background:var(--border)}
+    .ya-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#FF0000;color:#fff;
+      padding:11px 22px;border-radius:10px;
+      font-size:13.5px;font-weight:600;text-decoration:none;
+      transition:background .2s;white-space:nowrap;
+    }
+    .ya-btn:hover{background:#CC0000}
+    /* карточки */
     .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .rc{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px}
-    .rstars{color:var(--orange);font-size:17px;margin-bottom:14px}
-    .rtext{font-size:13.5px;color:var(--txt-mid);line-height:1.72;font-style:italic;margin-bottom:18px}
-    .rauthor{display:flex;align-items:center;gap:11px}
-    .rav{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0}
+    .rc.wide{grid-column:span 2}
+    .rc{
+      background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;
+      display:flex;flex-direction:column;
+    }
+    .rc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .rstars{color:#FFC700;font-size:16px;letter-spacing:1px}
+    .rc-src{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt-light)}
+    .rc-src svg{width:14px;height:14px}
+    .rtext{font-size:13.5px;color:var(--txt-mid);line-height:1.72;font-style:italic;margin-bottom:18px;flex:1}
+    .rauthor{display:flex;align-items:center;gap:11px;margin-top:auto}
+    .rav{
+      width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;
+      background:var(--teal);display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:16px;font-weight:700;
+    }
     .rav img{width:100%;height:100%;object-fit:cover}
     .rname{font-weight:700;font-size:14px;color:#1a2e2e}
     .rtour{font-size:11.5px;color:var(--txt-light)}
+    .r-photos{display:flex;gap:8px;margin-bottom:16px}
+    .r-photos img{width:80px;height:80px;object-fit:cover;border-radius:10px}
 
     /* ══════════════ BOOKING CTA ══════════════ */
     .cta-wrap{
@@ -371,6 +412,109 @@
     .wa-float:hover{transform:scale(1.09)}
 
     /* ══════════════ RESPONSIVE ══════════════ */
+    /* ══════════════ PROGRAM NEW ══════════════ */
+    .prog-days{display:flex;flex-direction:column;gap:32px;max-width:1100px;margin:0 auto}
+    .pd{
+      display:grid;grid-template-columns:1fr 1fr;
+      border-radius:20px;overflow:hidden;
+      box-shadow:0 4px 28px rgba(0,0,0,.07);
+      background:#fff;border:1px solid var(--border);
+      min-height:320px;
+    }
+    .pd-rev .pd-photo{order:-1}
+    .pd-photo{position:relative;overflow:hidden;min-height:280px}
+    .pd-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .pd:hover .pd-photo img{transform:scale(1.04)}
+    .pd-photo-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(28,74,71,.45) 0%,transparent 60%);
+    }
+    .pd-num{
+      position:absolute;top:20px;left:20px;
+      width:48px;height:48px;background:var(--orange);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;font-weight:700;color:#fff;
+      box-shadow:0 3px 12px rgba(240,165,0,.4);
+    }
+    .pd-body{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+    .pd-tag{
+      display:inline-flex;align-items:center;gap:7px;
+      background:#EEF5F5;color:var(--teal);
+      font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+      padding:5px 12px;border-radius:20px;margin-bottom:14px;width:fit-content;
+    }
+    .pd-body h3{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(20px,2.2vw,26px);color:var(--teal);
+      line-height:1.2;margin-bottom:20px;font-weight:700;
+    }
+    .pd-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+    .pd-list li{
+      display:flex;align-items:flex-start;gap:10px;
+      font-size:14px;color:var(--txt-mid);line-height:1.55;
+    }
+    .pd-list li .pd-check{
+      width:20px;height:20px;background:#EEF7F5;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--teal);font-size:11px;font-weight:700;
+      flex-shrink:0;margin-top:1px;
+    }
+    .pd-list li strong{color:#1a2e2e}
+    @media(max-width:820px){
+      .pd{grid-template-columns:1fr}
+      .pd-photo{min-height:220px}
+      .pd-rev .pd-photo{order:0}
+      .pd-body{padding:28px 28px}
+    }
+    @media(max-width:480px){
+      .pd-body{padding:22px 20px}
+      .pd-photo{min-height:190px}
+    }
+
+    /* ══════════════ PHOTO GRID ══════════════ */
+    .photo-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:36px;
+    }
+    .pg-item{
+      position:relative;overflow:hidden;border-radius:10px;
+      aspect-ratio:1/1;cursor:pointer;background:#eee;
+    }
+    .pg-item img{
+      width:100%;height:100%;object-fit:cover;
+      display:block;transition:transform .35s;
+    }
+    .pg-item:hover img{transform:scale(1.07)}
+    .pg-over{
+      position:absolute;inset:0;background:rgba(28,74,71,.45);
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity .25s;font-size:22px;
+    }
+    .pg-item:hover .pg-over{opacity:1}
+    /* скрытые фото */
+    .pg-hidden{display:none}
+    .pg-hidden.visible{display:block}
+    /* оверлей «+13 смотреть все» */
+    .pg-more-cover{cursor:pointer}
+    .pg-more-over{
+      position:absolute;inset:0;
+      background:rgba(14,38,36,.72);
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:6px;
+    }
+    .pg-more-num{
+      font-size:36px;font-weight:700;color:#fff;
+      font-family:'Playfair Display',serif;line-height:1;
+    }
+    .pg-more-txt{
+      font-size:13px;color:rgba(255,255,255,.85);
+      font-family:'Inter',sans-serif;font-weight:500;
+      letter-spacing:.3px;
+    }
+    .pg-more-cover:hover .pg-more-over{background:rgba(14,38,36,.85)}
+
     @media(max-width:1024px){
       .why-cards{grid-template-columns:repeat(2,1fr)}
       .tours-grid{grid-template-columns:repeat(2,1fr)}
@@ -382,6 +526,7 @@
       .steps{grid-template-columns:repeat(2,1fr);gap:24px}
       .steps::before{display:none}
       .rev-grid{grid-template-columns:1fr}
+      .rc.wide{grid-column:span 1}
       .cta-card{grid-template-columns:1fr}
       .con-grid{grid-template-columns:1fr}
       .gi.tall{grid-row:span 1}
@@ -407,8 +552,15 @@
       .cta-r{padding:32px 28px}
       .feat-grid{grid-template-columns:1fr 1fr}
       .rev-grid{grid-template-columns:1fr}
+      .rc.wide{grid-column:span 1}
       .tours-hd{flex-direction:column;align-items:flex-start}
       .filters{flex-wrap:wrap}
+    }
+    @media(max-width:768px){
+      .photo-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+    }
+    @media(max-width:480px){
+      .photo-grid{grid-template-columns:repeat(2,1fr);gap:7px}
     }
     @media(max-width:400px){
       .hero h1{font-size:28px}
@@ -533,7 +685,7 @@
       <div class="filters">
         <button class="fb on" onclick="filterTours('all',this)">Все туры</button>
         <button class="fb" onclick="filterTours('multi',this)">Многодневные</button>
-        <button class="fb" onclick="filterTours('single',this)">Однодневные</button>
+        <button class="fb" onclick="filterTours('excursion',this)">Экскурсии</button>
       </div>
     </div>
     <div class="tours-grid" id="tg">
@@ -579,11 +731,11 @@
           </div>
         </div>
       </div>
-      <!-- Тур 3 -->
-      <div class="tc" data-type="single">
+      <!-- Экскурсия 1 -->
+      <div class="tc" data-type="excursion">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80" alt="Сулакский каньон"/>
-          <span class="tbadge">1 день</span>
+          <span class="tbadge" style="background:var(--orange)">Экскурсия</span>
           <span class="trat">4.8</span>
         </div>
         <div class="tc-body">
@@ -600,89 +752,172 @@
           </div>
         </div>
       </div>
+      <!-- Экскурсия 2 -->
+      <div class="tc" data-type="excursion" style="display:none">
+        <div class="tc-img">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Гамсутль"/>
+          <span class="tbadge" style="background:var(--orange)">Экскурсия</span>
+          <span class="trat">4.9</span>
+        </div>
+        <div class="tc-body">
+          <h3>Аул-призрак Гамсутль</h3>
+          <div class="tc-loc">🏔️&nbsp;Гамсутль • Чох • Гоор</div>
+          <div class="tc-inc">
+            <span class="itag">🚗 Трансфер</span>
+            <span class="itag">👤 Гид</span>
+            <span class="itag">🍽️ Обед</span>
+          </div>
+          <div class="tc-ft">
+            <div><div class="tc-pl">Стоимость от</div><div class="tc-price">2 800 ₽</div></div>
+            <button class="tc-btn" onclick="goToBooking()">→</button>
+          </div>
+        </div>
+      </div>
+      <!-- Экскурсия 3 -->
+      <div class="tc" data-type="excursion" style="display:none">
+        <div class="tc-img">
+          <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80" alt="Водопады"/>
+          <span class="tbadge" style="background:var(--orange)">Экскурсия</span>
+          <span class="trat">4.7</span>
+        </div>
+        <div class="tc-body">
+          <h3>Водопады и плато Хунзах</h3>
+          <div class="tc-loc">🏔️&nbsp;Хунзах • Тобот • Итлятляр</div>
+          <div class="tc-inc">
+            <span class="itag">🚗 Трансфер</span>
+            <span class="itag">👤 Гид</span>
+          </div>
+          <div class="tc-ft">
+            <div><div class="tc-pl">Стоимость от</div><div class="tc-price">2 500 ₽</div></div>
+            <button class="tc-btn" onclick="goToBooking()">→</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══ PROGRAM ══ -->
 <section class="sec program" id="program">
-  <div class="inner prog-hd" style="max-width:800px">
+  <div style="text-align:center;margin-bottom:52px">
     <div class="lbl-c">Программа</div>
     <h2 class="ttl-c">Пример программы тура (3 дня)</h2>
     <p class="prog-sub">Насыщенная программа, охватывающая самые топовые локации</p>
   </div>
-  <div class="prog-inner">
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-hd"><span class="day-b">День 1</span><h3>Чудеса природы и адреналин</h3></div>
-          <ul class="tl-list">
-            <li><strong>Бархан Сарыкум</strong> — крупнейшая песчаная дюна Евразии</li>
-            <li><strong>Сулакский каньон</strong> — смотровые площадки с панорамным видом</li>
-            <li><strong>Пещера Нохъо</strong> — подвесной мост над пропастью</li>
-            <li><strong>Джипинг и катер</strong> — спуск в каньон и прогулка по бирюзовой воде</li>
-          </ul>
-        </div>
+
+  <div class="prog-days">
+
+    <!-- День 1 -->
+    <div class="pd">
+      <div class="pd-body">
+        <div class="pd-tag">День 1</div>
+        <h3>Чудеса природы и адреналин</h3>
+        <ul class="pd-list">
+          <li><span class="pd-check">✓</span><div><strong>Бархан Сарыкум</strong> — крупнейшая песчаная дюна Евразии</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Сулакский каньон</strong> — смотровые площадки с панорамным видом</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Пещера Нохъо</strong> — подвесной мост над пропастью</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Джипинг и катер</strong> — спуск в каньон и прогулка по бирюзовой воде</div></li>
+        </ul>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-hd"><span class="day-b">День 2</span><h3>Ущелья и горы</h3></div>
-          <ul class="tl-list">
-            <li><strong>Карадахская теснина</strong> — уникальное узкое ущелье, "Ворота чудес"</li>
-            <li><strong>Древний Гоор</strong> — башенный комплекс на краю обрыва</li>
-            <li><strong>Язык Тролля</strong> — знаменитый скальный выступ для фото</li>
-            <li><strong>Рафтинг</strong> — сплав по горной реке (по желанию)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-hd"><span class="day-b">День 3</span><h3>Плато и водопады</h3></div>
-          <ul class="tl-list">
-            <li><strong>Хунзахское плато</strong> — самое широкое горное плато Дагестана</li>
-            <li><strong>Водопады Тобот и Итлятляр</strong> — мощные потоки воды, падающие в каньон</li>
-            <li><strong>Плато Матлас</strong> — смотровые площадки и экстрим-парк</li>
-            <li><strong>Каменная чаша</strong> — скрытые лабиринты внутри скал</li>
-          </ul>
-        </div>
+      <div class="pd-photo">
+        <img src="img/opt/photo_04.jpg" alt="День 1 — природа Дагестана" loading="lazy"/>
+        <div class="pd-photo-overlay"></div>
+        <div class="pd-num">1</div>
       </div>
     </div>
+
+    <!-- День 2 -->
+    <div class="pd pd-rev">
+      <div class="pd-body">
+        <div class="pd-tag">День 2</div>
+        <h3>Ущелья и горы</h3>
+        <ul class="pd-list">
+          <li><span class="pd-check">✓</span><div><strong>Карадахская теснина</strong> — уникальное узкое ущелье, «Ворота чудес»</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Древний Гоор</strong> — башенный комплекс на краю обрыва</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Язык Тролля</strong> — знаменитый скальный выступ для фото</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Рафтинг</strong> — сплав по горной реке (по желанию)</div></li>
+        </ul>
+      </div>
+      <div class="pd-photo">
+        <img src="img/opt/photo_08.jpg" alt="День 2 — ущелья и горы" loading="lazy"/>
+        <div class="pd-photo-overlay"></div>
+        <div class="pd-num">2</div>
+      </div>
+    </div>
+
+    <!-- День 3 -->
+    <div class="pd">
+      <div class="pd-body">
+        <div class="pd-tag">День 3</div>
+        <h3>Плато и водопады</h3>
+        <ul class="pd-list">
+          <li><span class="pd-check">✓</span><div><strong>Хунзахское плато</strong> — самое широкое горное плато Дагестана</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Водопады Тобот и Итлятляр</strong> — мощные потоки воды, падающие в каньон</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Плато Матлас</strong> — смотровые площадки и экстрим-парк</div></li>
+          <li><span class="pd-check">✓</span><div><strong>Каменная чаша</strong> — скрытые лабиринты внутри скал</div></li>
+        </ul>
+      </div>
+      <div class="pd-photo">
+        <img src="img/opt/photo_20.jpg" alt="День 3 — плато и водопады" loading="lazy"/>
+        <div class="pd-photo-overlay"></div>
+        <div class="pd-num">3</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ══ GALLERY ══ -->
-<section class="sec" style="background:#fff">
+<section class="sec" style="background:#fff" id="gallery">
   <div class="inner">
     <div class="gallery-hd">
       <div class="lbl-c">Впечатления</div>
       <h2 class="ttl-c">Галерея путешествий</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1.45fr 1fr;grid-template-rows:210px 210px;gap:12px;margin-bottom:12px">
-      <div class="gi tall" style="grid-row:span 2">
-        <img src="https://images.unsplash.com/photo-1564678677560-01cfd39f60e1?w=800&q=80" alt="Сулакский каньон"/>
-        <div class="gi-cap">Сулакский каньон</div>
+    <div class="photo-grid" id="photoGrid">
+      <!-- первые 8 — всегда видны -->
+      <div class="pg-item" onclick="openLb('img/opt/photo_01.jpg')"><img src="img/thumb/photo_01.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_02.jpg')"><img src="img/thumb/photo_02.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_03.jpg')"><img src="img/thumb/photo_03.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_04.jpg')"><img src="img/thumb/photo_04.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_05.jpg')"><img src="img/thumb/photo_05.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_06.jpg')"><img src="img/thumb/photo_06.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item" onclick="openLb('img/opt/photo_07.jpg')"><img src="img/thumb/photo_07.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <!-- последний из первой строки с оверлеем «+13» -->
+      <div class="pg-item pg-more-cover" id="moreCover" onclick="expandGallery()">
+        <img src="img/thumb/photo_08.jpg" alt="Дагестан" loading="lazy"/>
+        <div class="pg-more-over">
+          <span class="pg-more-num">+13</span>
+          <span class="pg-more-txt">Смотреть все фото</span>
+        </div>
       </div>
-      <div class="gi">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Горы Дагестана"/>
-      </div>
-      <div class="gi">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Дагестанские ремёсла"/>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:230px">
-      <div class="gi">
-        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80" alt="Водопад"/>
-      </div>
-      <div class="gi">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Счастливые туристы"/>
-        <div class="gi-cap">Счастливые туристы</div>
-      </div>
+      <!-- остальные 13 — скрыты до нажатия -->
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_08.jpg')"><img src="img/thumb/photo_08.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_09.jpg')"><img src="img/thumb/photo_09.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_10.jpg')"><img src="img/thumb/photo_10.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_11.jpg')"><img src="img/thumb/photo_11.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_12.jpg')"><img src="img/thumb/photo_12.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_13.jpg')"><img src="img/thumb/photo_13.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_14.jpg')"><img src="img/thumb/photo_14.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_15.jpg')"><img src="img/thumb/photo_15.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_16.jpg')"><img src="img/thumb/photo_16.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_17.jpg')"><img src="img/thumb/photo_17.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_18.jpg')"><img src="img/thumb/photo_18.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_19.jpg')"><img src="img/thumb/photo_19.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_20.jpg')"><img src="img/thumb/photo_20.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
+      <div class="pg-item pg-hidden" onclick="openLb('img/opt/photo_21.jpg')"><img src="img/thumb/photo_21.jpg" alt="Дагестан" loading="lazy"/><div class="pg-over"><span>🔍</span></div></div>
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="closeLb()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <button onclick="event.stopPropagation();lbNav(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">‹</button>
+  <img id="lb-img" src="" style="max-width:90vw;max-height:90vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.5);object-fit:contain"/>
+  <button onclick="event.stopPropagation();lbNav(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">›</button>
+  <button onclick="closeLb()" style="position:absolute;top:18px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1">✕</button>
+  <div id="lb-count" style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:13px;font-family:Inter,sans-serif"></div>
+</div>
 
 <!-- ══ HOW IT WORKS ══ -->
 <section class="how">
@@ -721,32 +956,154 @@
       <div class="lbl-c">Отзывы</div>
       <h2 class="ttl-c">Что говорят наши туристы</h2>
     </div>
+
+    <!-- Яндекс-шапка с рейтингом -->
+    <div class="ya-header">
+      <div class="ya-logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#FF0000"/>
+          <text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text>
+        </svg>
+        <span class="ya-logo-txt">Яндекс Карты</span>
+      </div>
+      <div class="ya-divider"></div>
+      <div class="ya-score">
+        <span class="ya-num">4.9</span>
+        <div class="ya-right">
+          <div class="ya-stars">★★★★★</div>
+          <div class="ya-count">Derbent Travel · Дербент</div>
+        </div>
+      </div>
+      <div class="ya-divider"></div>
+      <a href="https://yandex.ru/navi/org/derbent_travel/116414878875" target="_blank" rel="noopener" class="ya-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
+        Все отзывы на Яндексе
+      </a>
+    </div>
+
+    <!-- Карточки отзывов -->
     <div class="rev-grid">
       <div class="rc">
-        <div class="rstars">★★★★★</div>
-        <p class="rtext">"Невероятное путешествие! Дагестан превзошёл все ожидания, а организация от Derbent Travel была на высшем уровне. Гид Магомед рассказывал такие интересные истории, что мы слушали с открытым ртом. Спасибо за эти эмоции!"</p>
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Гостили в Дагестане в июле этого года, а именно в Дербенте! Хочется отметить красоту этого края, лучше гор могут быть только горы! И помогли увидеть всю красоту нам местные ребята из 5 звёзд — Derbent Travel. Спасибо за тёплый приём и незабываемые впечатления!"</p>
+        <div class="r-photos">
+          <img src="https://avatars.mds.yandex.net/get-altay/10768923/2a0000018a5766c7341c592f145fcaf4c374/XXXL" alt="Фото из отзыва">
+          <img src="https://avatars.mds.yandex.net/get-altay/10636707/2a0000018a5766b588a2ec5148028c4e7845/XXXL" alt="Фото из отзыва">
+        </div>
         <div class="rauthor">
-          <div class="rav"><img src="https://i.pravatar.cc/100?img=5" alt="Мария В."/></div>
-          <div><div class="rname">Мария В.</div><div class="rtour">Тур «Жемчужины Кавказа»</div></div>
+          <div class="rav">О</div>
+          <div>
+            <div class="rname">Ольга М.</div>
+            <div class="rtour">Знаток города · 4 уровня · 2 сентября 2023</div>
+          </div>
         </div>
       </div>
       <div class="rc">
-        <div class="rstars">★★★★★</div>
-        <p class="rtext">"Ездили компанией друзей на 3 дня. Очень насыщенная программа, комфортные машины, вкуснейшая местная еда. Особенно впечатлил Сулакский каньон на катере. Ребята молодцы, всё чётко по таймингу."</p>
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Отличная организация работы, особенно радует незабываемые поездки с гид водителем Русланом. Всё подробно рассказал, показал. Одним словом — профессор своего дела."</p>
+        <div class="r-photos">
+          <img src="https://avatars.mds.yandex.net/get-altay/10812365/2a0000018a56b1639bf189970b76b9ede4a1/S" alt="Фото из отзыва">
+          <img src="https://avatars.mds.yandex.net/get-altay/9720991/2a0000018a56b1639f1de6fc8af899f34a17/S" alt="Фото из отзыва">
+        </div>
         <div class="rauthor">
-          <div class="rav"><img src="https://i.pravatar.cc/100?img=12" alt="Алексей С."/></div>
-          <div><div class="rname">Алексей С.</div><div class="rtour">Тур «Гранд Дагестан»</div></div>
+          <div class="rav" style="background:#8B4513">А</div>
+          <div>
+            <div class="rname">Axmed Arsenov</div>
+            <div class="rtour">Знаток города · 3 уровня · 2 сентября 2023</div>
+          </div>
         </div>
       </div>
       <div class="rc">
-        <div class="rstars">★★★★<span style="color:#ddd">★</span></div>
-        <p class="rtext">"Брали индивидуальную экскурсию в Гамсутль. Водитель приехал вовремя, машина чистая, с кондиционером. Виды потрясающие, фото получились просто космос. Обязательно вернёмся ещё!"</p>
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Эту красоту должен посмотреть каждый! Необыкновенно всё: величественные горы, шумные водопады, нескончаемые ущелья… Спасибо гиду Руслану!"</p>
+        <div class="r-photos">
+          <img src="https://avatars.mds.yandex.net/get-altay/10445027/2a0000018a984fef741a2edad0e9137f21dc/S" alt="Фото из отзыва">
+          <img src="https://avatars.mds.yandex.net/get-altay/10589039/2a0000018a984ffaa32fb659e41d23baaec7/S" alt="Фото из отзыва">
+          <img src="https://avatars.mds.yandex.net/get-altay/10869107/2a0000018a984ff49e04ee83a42c166d5bbb/S" alt="Фото из отзыва">
+        </div>
         <div class="rauthor">
-          <div class="rav"><img src="https://i.pravatar.cc/100?img=9" alt="Елена К."/></div>
-          <div><div class="rname">Елена К.</div><div class="rtour">Индивидуальная экскурсия</div></div>
+          <div class="rav" style="background:#7B5EA7">Н</div>
+          <div>
+            <div class="rname">Наталья Назарова</div>
+            <div class="rtour">Знаток города · 14 уровня · 15 сентября 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="rc">
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Спасибо компании Дербент Трэвел за отличную организацию тура в Сулакский каньон. Гид Руслан великолепно всё рассказал — подробно и интересно! Виды очень красивые, природа завораживает! Буду рекомендовать друзьям и родственникам!"</p>
+        <div class="r-photos">
+          <img src="https://avatars.mds.yandex.net/get-altay/10702222/2a0000018a7f955edc72e9e458edb5364ccd/XXXL" alt="Фото из отзыва">
+          <img src="https://avatars.mds.yandex.net/get-altay/9663145/2a0000018a7f9558b16e2746b2ae5c4ea868/XXXL" alt="Фото из отзыва">
+        </div>
+        <div class="rauthor">
+          <div class="rav" style="background:#C0637A">Е</div>
+          <div>
+            <div class="rname">Елизавета Дробченко</div>
+            <div class="rtour">Знаток города · 6 уровня · 10 сентября 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="rc">
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Отдыхали в Дагестане. Остались очень довольны отдыхом и под большим впечатлением. Какие красоты и отличные места этого края. Особо хочется поблагодарить нашего гида Руслана за отличное сопровождение!"</p>
+        <div class="rauthor">
+          <div class="rav" style="background:#4A7FA5">Ш</div>
+          <div>
+            <div class="rname">Шахсен Г.</div>
+            <div class="rtour">Знаток города · 2 уровня · 3 сентября 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="rc">
+        <div class="rc-top">
+          <div class="rstars">★★★★★</div>
+          <div class="rc-src">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF0000"/><text x="6" y="17" font-family="Arial" font-weight="bold" font-size="13" fill="white">Я</text></svg>
+            Яндекс
+          </div>
+        </div>
+        <p class="rtext">"Все экскурсии были интересными и информативными. Благодарю особенно гида-водителя Руслана за организацию тура. Очень внимательный, чуткий, отзывчивый человек. Рекомендую тем, кто хочет отдохнуть в просторах Дагестана."</p>
+        <div class="rauthor">
+          <div class="rav" style="background:#3D8C85">Н</div>
+          <div>
+            <div class="rname">Нурижат Алибекова</div>
+            <div class="rtour">Знаток города · 3 уровня · 2 сентября 2023</div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -785,7 +1142,9 @@
               <option value="">Помогите выбрать</option>
               <option>Гранд Дагестан (3 дня)</option>
               <option>Жемчужины Кавказа (5 дней)</option>
-              <option>Сулакский каньон — 1 день</option>
+              <option>Экскурсия — Сулакский каньон</option>
+              <option>Экскурсия — Гамсутль</option>
+              <option>Экскурсия — Водопады Хунзах</option>
               <option>Индивидуальный тур</option>
             </select>
           </div>
@@ -902,6 +1261,43 @@
 </a>
 
 <script>
+  // Expand gallery
+  function expandGallery(){
+    document.getElementById('moreCover').style.display = 'none'
+    document.querySelectorAll('.pg-hidden').forEach(el => {
+      el.classList.add('visible')
+    })
+  }
+
+  // Lightbox
+  const lbSrcs = Array.from({length:21},(_,i)=>`img/opt/photo_${String(i+1).padStart(2,'0')}.jpg`)
+  let lbIdx = 0
+  function openLb(src){
+    lbIdx = lbSrcs.indexOf(src)
+    document.getElementById('lb-img').src = src
+    document.getElementById('lb-count').textContent = `${lbIdx+1} / ${lbSrcs.length}`
+    const lb = document.getElementById('lb')
+    lb.style.display = 'flex'
+    document.body.style.overflow = 'hidden'
+  }
+  function closeLb(){
+    document.getElementById('lb').style.display = 'none'
+    document.body.style.overflow = ''
+  }
+  function lbNav(dir){
+    lbIdx = (lbIdx + dir + lbSrcs.length) % lbSrcs.length
+    document.getElementById('lb-img').src = lbSrcs[lbIdx]
+    document.getElementById('lb-count').textContent = `${lbIdx+1} / ${lbSrcs.length}`
+  }
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lb')
+    if(lb.style.display==='flex'){
+      if(e.key==='ArrowLeft') lbNav(-1)
+      else if(e.key==='ArrowRight') lbNav(1)
+      else if(e.key==='Escape') closeLb()
+    }
+  })
+
   // Nav scroll effect
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50)
@@ -915,6 +1311,10 @@
       card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none'
     })
   }
+  // При старте скрываем лишние экскурсии (показываем только первую в «все туры»)
+  document.querySelectorAll('#tg .tc[data-type="excursion"]').forEach((card, i) => {
+    if (i > 0) card.style.display = 'none'
+  })
 
   // Go to booking
   function goToBooking() {
