@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Запрет на индексацию служебных папок
+Disallow: /img/thumb/
+
+# Sitemap
+Sitemap: https://derbent-travel.ru/sitemap.xml
