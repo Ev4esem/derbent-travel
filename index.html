@@ -2266,8 +2266,7 @@
           <h2 class="ttl">Популярные туры</h2>
         </div>
         <div class="filters">
-          <button class="fb on" onclick="filterTours('all',this)">Все туры</button>
-          <button class="fb" onclick="filterTours('multi',this)">Многодневные</button>
+          <button class="fb on" onclick="filterTours('multi',this)">Туры</button>
           <button class="fb" onclick="filterTours('excursion',this)">Экскурсии</button>
         </div>
       </div>
@@ -3026,9 +3025,9 @@
         card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none'
       })
     }
-    // При старте скрываем лишние экскурсии (показываем только первую в «все туры»)
-    document.querySelectorAll('#tg .tc[data-type="excursion"]').forEach((card, i) => {
-      if (i > 0) card.style.display = 'none'
+    // При старте показываем только туры (multi), скрываем все экскурсии
+    document.querySelectorAll('#tg .tc').forEach(card => {
+      card.style.display = card.dataset.type === 'multi' ? '' : 'none'
     })
 
     // Go to booking
