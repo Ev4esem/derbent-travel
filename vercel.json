@@ -1,6 +1,7 @@
 {
   "functions": {
-    "api/notify.js": { "runtime": "nodejs20.x" },
-    "api/setup.js":  { "runtime": "nodejs20.x" }
+    "api/*.js": {
+      "maxDuration": 10
+    }
   }
 }
