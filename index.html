@@ -2819,22 +2819,27 @@
         </div>
         <div class="cta-r">
           <h3>Оставить заявку</h3>
-          <form onsubmit="return sendForm(event)">
+          <form id="bookingForm" onsubmit="return sendForm(event)">
+            <!-- Web3Forms: замени YOUR_ACCESS_KEY на ключ с web3forms.com -->
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY"/>
+            <input type="hidden" name="subject" value="Новая заявка с сайта Derbent Travel"/>
+            <input type="hidden" name="from_name" value="Derbent Travel — Сайт"/>
+            <input type="hidden" name="redirect" value="false"/>
             <div class="fg">
               <label>Ваше имя</label>
-              <input type="text" placeholder="Иван Иванов" required />
+              <input type="text" name="name" placeholder="Иван Иванов" required />
             </div>
             <div class="fg">
               <label>Телефон</label>
-              <input type="tel" placeholder="+7 (999) 000-00-00" required />
+              <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required />
             </div>
             <div class="fg">
               <label>Интересующий тур</label>
-              <select>
+              <select name="tour">
                 <option value="">Помогите выбрать</option>
                 <option>Гранд Дагестан (3 дня)</option>
                 <option>Жемчужины Кавказа (5 дней)</option>
-                <option>Экскурсия — Сулакский каньон (Премиум)</option>
+                <option>Экскурсия — Сулакский каньон (Премиум) — 5 000 ₽</option>
                 <option>Экскурсия — Сулакский каньон (Стандарт) — 3 300 ₽</option>
                 <option>Экскурсия — Гамсутль и Подземный водопад — 3 700 ₽</option>
                 <option>Индивидуальный тур</option>
@@ -3022,16 +3027,51 @@
     }
 
     // Form submit
-    function sendForm(e) {
+    async function sendForm(e) {
       e.preventDefault()
-      const btn = e.target.querySelector('.btn-form')
-      btn.textContent = '✓ Заявка отправлена!'
-      btn.style.background = '#2B8C60'
-      setTimeout(() => {
-        btn.textContent = 'Забронировать тур'
-        btn.style.background = ''
-        e.target.reset()
-      }, 3500)
+      const form = e.target
+      const btn = form.querySelector('.btn-form')
+      btn.textContent = 'Отправляем...'
+      btn.disabled = true
+
+      const data = new FormData(form)
+      const json = {
+        name:  data.get('name')  || '',
+        phone: data.get('phone') || '',
+        tour:  data.get('tour')  || '',
+      }
+
+      try {
+        // Отправляем на серверную функцию → MAX бот
+        const res = await fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(json)
+        })
+        const result = await res.json()
+
+        if (res.ok && result.success) {
+          btn.textContent = '✓ Заявка отправлена!'
+          btn.style.background = '#2B8C60'
+          form.reset()
+          setTimeout(() => {
+            btn.textContent = 'Забронировать тур'
+            btn.style.background = ''
+            btn.disabled = false
+          }, 4000)
+        } else {
+          throw new Error(result.error || 'Ошибка сервера')
+        }
+      } catch (err) {
+        console.error('sendForm error:', err)
+        btn.textContent = '✗ Ошибка, попробуйте снова'
+        btn.style.background = '#c0392b'
+        btn.disabled = false
+        setTimeout(() => {
+          btn.textContent = 'Забронировать тур'
+          btn.style.background = ''
+        }, 3500)
+      }
       return false
     }
 
