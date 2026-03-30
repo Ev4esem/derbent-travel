@@ -1,0 +1,8 @@
+{
+  "name": "derbent-travel",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@maxhub/max-bot-api": "latest"
+  }
+}

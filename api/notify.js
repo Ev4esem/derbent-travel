@@ -1,7 +1,9 @@
 // Vercel Serverless Function — отправляет заявку с сайта в MAX бот
 // Переменные окружения в Vercel Dashboard → Settings → Environment Variables:
 //   MAX_BOT_TOKEN — токен бота
-//   MAX_CHAT_ID   — твой chat_id (получи через /api/setup)
+//   MAX_USER_ID   — твой user_id из ссылки web.max.ru/XXXXXXX
+
+import { Bot } from '@maxhub/max-bot-api';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,48 +20,28 @@ export default async function handler(req, res) {
   }
 
   const BOT_TOKEN = process.env.MAX_BOT_TOKEN;
-  const CHAT_ID   = process.env.MAX_CHAT_ID;
+  const USER_ID   = Number(process.env.MAX_USER_ID);
 
-  if (!BOT_TOKEN || !CHAT_ID) {
-    console.error('MAX_BOT_TOKEN или MAX_CHAT_ID не заданы');
-    return res.status(500).json({ error: 'Сервер не настроен. Задай переменные окружения.' });
+  if (!BOT_TOKEN || !USER_ID) {
+    return res.status(500).json({ error: 'MAX_BOT_TOKEN или MAX_USER_ID не заданы' });
   }
 
   const text = [
-    '🔔 *Новая заявка с сайта Derbent Travel*',
+    '🔔 **Новая заявка с сайта Derbent Travel**',
     '',
-    `👤 *Имя:* ${name}`,
-    `📞 *Телефон:* ${phone}`,
-    `🏔️ *Тур:* ${tour || 'не выбран'}`,
+    `👤 **Имя:** ${name}`,
+    `📞 **Телефон:** ${phone}`,
+    `🏔️ **Тур:** ${tour || 'не выбран'}`,
     '',
-    `🕐 *Время:* ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`,
+    `🕐 **Время:** ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`,
   ].join('\n');
 
   try {
-    const response = await fetch('https://platform-api.max.ru/messages', {
-      method: 'POST',
-      headers: {
-        'Authorization': BOT_TOKEN,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text,
-        format: 'markdown',
-      }),
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      console.error('MAX API error:', result);
-      return res.status(500).json({ error: 'Ошибка MAX API', details: result });
-    }
-
+    const bot = new Bot(BOT_TOKEN);
+    await bot.api.sendMessageToUser(USER_ID, text, { format: 'markdown' });
     return res.status(200).json({ success: true });
-
   } catch (err) {
-    console.error('Fetch error:', err);
-    return res.status(500).json({ error: 'Сетевая ошибка' });
+    console.error('MAX error:', err);
+    return res.status(500).json({ error: 'Ошибка отправки в MAX', details: err.message });
   }
 }
