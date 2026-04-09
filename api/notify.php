@@ -46,30 +46,30 @@ if (MAX_BOT_TOKEN === 'ВСТАВЬ_ТОКЕН_СЮДА' || MAX_USER_ID === 0) {
 
 // Формируем текст сообщения
 $time = (new DateTime('now', new DateTimeZone('Europe/Moscow')))->format('d.m.Y H:i');
-$text = "🔔 **Новая заявка с сайта Derbent Travel**\n\n"
-      . "👤 **Имя:** {$name}\n"
-      . "📞 **Телефон:** {$phone}\n"
-      . "🏔️ **Тур:** " . ($tour ?: 'не выбран') . "\n\n"
-      . "🕐 **Время:** {$time}";
+$text = "🔔 Новая заявка с сайта Derbent Travel\n\n"
+      . "Имя: {$name}\n"
+      . "Телефон: {$phone}\n"
+      . "Тур: " . ($tour ?: 'не выбран') . "\n\n"
+      . "Время: {$time}";
 
 // Отправляем сообщение через MAX Bot API
 $payload = json_encode([
-    'recipient' => ['user_id' => (int) MAX_USER_ID],
-    'type'      => 'message',
+    'recipient' => ['userId' => (string) MAX_USER_ID],
+    'type'      => 'bot_message',
     'body'      => [
-        'text'   => $text,
-        'format' => 'markdown',
+        'text' => $text,
     ],
 ]);
 
-$ch = curl_init('https://platform-api.max.ru/messages');
+$url = 'https://botapi.max.ru/messages?access_token=' . urlencode(MAX_BOT_TOKEN);
+
+$ch = curl_init($url);
 curl_setopt_array($ch, [
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => $payload,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER     => [
         'Content-Type: application/json',
-        'Authorization: ' . MAX_BOT_TOKEN,
     ],
     CURLOPT_TIMEOUT        => 10,
 ]);
@@ -87,7 +87,11 @@ if ($curlErr) {
 
 if ($httpCode < 200 || $httpCode >= 300) {
     http_response_code(500);
-    echo json_encode(['error' => 'Ошибка MAX API', 'details' => $response]);
+    echo json_encode([
+        'error'    => 'Ошибка MAX API',
+        'httpCode' => $httpCode,
+        'details'  => $response,
+    ]);
     exit;
 }
 
