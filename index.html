@@ -25,7 +25,7 @@
   <meta property="og:description"
     content="Авторские туры по Дагестану: Сулакский каньон, аул Гамсутль, горные ущелья, водопады. Трансфер, гид и питание включены. Группы от 2 человек." />
   <meta property="og:url" content="https://derbent-travel.ru/" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=80" />
+  <meta property="og:image" content="https://trip-derbent.ru/img/сулакский.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Живописные горы Дагестана — Derbent Travel" />
@@ -35,7 +35,7 @@
   <meta name="twitter:title" content="Derbent Travel — Авторские туры по Дагестану" />
   <meta name="twitter:description"
     content="Авторские туры по Дагестану: Сулакский каньон, Гамсутль, горные ущелья и водопады. Трансфер и гид включены." />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=80" />
+  <meta name="twitter:image" content="https://trip-derbent.ru/img/сулакский.jpg" />
 
   <!-- ══ SEO: JSON-LD Schema ══ -->
   <script type="application/ld+json">
@@ -296,7 +296,7 @@
       position: absolute;
       inset: 0;
       background:
-        url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&q=80') center/cover no-repeat,
+        url('img/сулакский.jpg') center/cover no-repeat,
         linear-gradient(160deg, #0a2322 0%, #1C4A47 60%, #2B6260 100%);
       filter: brightness(.52);
     }
@@ -1295,7 +1295,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=70') center/cover no-repeat;
+      background: url('img/тесница.jpg') center/cover no-repeat;
       opacity: .12;
     }
 
@@ -2262,7 +2262,7 @@
         <!-- Тур 1 -->
         <div class="tc" data-type="multi">
           <div class="tc-img">
-            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Гранд Дагестан" />
+            <img src="img/opt/photo_01.jpg" alt="Гранд Дагестан" />
             <span class="tbadge">3 дня / 2 ночи</span>
 
           </div>
@@ -2286,7 +2286,7 @@
         <!-- Тур 2 -->
         <div class="tc" data-type="multi">
           <div class="tc-img">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
+            <img src="img/opt/photo_03.jpg"
               alt="Жемчужины Кавказа" />
             <span class="tbadge hot">Хит продаж • 5 дней</span>
 
@@ -2366,7 +2366,7 @@
         <!-- Экскурсия 3 — Гамсутль и Подземный водопад -->
         <div class="tc" data-type="excursion" style="display:none">
           <div class="tc-img">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
+            <img src="img/opt/photo_03.jpg"
               alt="Аул-призрак Гамсутль в горах Дагестана" />
             <span class="tbadge" style="background:var(--orange)">Экскурсия</span>
           </div>
@@ -2831,7 +2831,8 @@
             </div>
             <div class="fg">
               <label>Телефон</label>
-              <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required />
+              <input type="tel" name="phone" id="phoneInput" placeholder="+7 999 000 00 00" required autocomplete="tel" />
+              <span id="phoneError" style="color:#c0392b;font-size:13px;display:none;margin-top:4px">Введите номер полностью: +7 XXX XXX XX XX</span>
             </div>
             <div class="fg">
               <label>Интересующий тур</label>
@@ -3026,6 +3027,52 @@
       document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })
     }
 
+    // Phone auto-format: +7 XXX XXX XX XX
+    const phoneInput = document.getElementById('phoneInput')
+    const phoneError = document.getElementById('phoneError')
+
+    phoneInput.addEventListener('input', function () {
+      let digits = this.value.replace(/\D/g, '')
+
+      // Если начинается с 8 — заменяем на 7
+      if (digits.startsWith('8')) digits = '7' + digits.slice(1)
+      // Если начинается не с 7 — добавляем 7
+      if (digits.length > 0 && !digits.startsWith('7')) digits = '7' + digits
+
+      // Обрезаем до 11 цифр
+      digits = digits.slice(0, 11)
+
+      // Форматируем: +7 XXX XXX XX XX
+      let formatted = ''
+      if (digits.length > 0)  formatted = '+7'
+      if (digits.length > 1)  formatted += ' ' + digits.slice(1, 4)
+      if (digits.length > 4)  formatted += ' ' + digits.slice(4, 7)
+      if (digits.length > 7)  formatted += ' ' + digits.slice(7, 9)
+      if (digits.length > 9)  formatted += ' ' + digits.slice(9, 11)
+
+      this.value = formatted
+
+      // Показываем ошибку только если уже что-то введено и номер неполный
+      if (digits.length > 0 && digits.length < 11) {
+        phoneError.style.display = 'block'
+        this.style.borderColor = '#c0392b'
+      } else {
+        phoneError.style.display = 'none'
+        this.style.borderColor = digits.length === 11 ? '#2B8C60' : ''
+      }
+    })
+
+    phoneInput.addEventListener('keydown', function (e) {
+      // При нажатии backspace на форматирующем символе — удаляем цифру
+      const pos = this.selectionStart
+      if (e.key === 'Backspace' && pos > 0 && ' '.includes(this.value[pos - 1])) {
+        e.preventDefault()
+        this.value = this.value.slice(0, pos - 2) + this.value.slice(pos)
+        this.setSelectionRange(pos - 2, pos - 2)
+        this.dispatchEvent(new Event('input'))
+      }
+    })
+
     // Form submit
     async function sendForm(e) {
       e.preventDefault()
@@ -3035,6 +3082,18 @@
       btn.disabled = true
 
       const data = new FormData(form)
+
+      // Валидация телефона — ровно 11 цифр
+      const phoneDigits = (data.get('phone') || '').replace(/\D/g, '')
+      if (phoneDigits.length !== 11) {
+        phoneError.style.display = 'block'
+        phoneInput.style.borderColor = '#c0392b'
+        phoneInput.focus()
+        btn.textContent = 'Забронировать тур'
+        btn.disabled = false
+        return false
+      }
+
       const json = {
         name:  data.get('name')  || '',
         phone: data.get('phone') || '',
