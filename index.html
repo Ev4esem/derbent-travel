@@ -2108,6 +2108,13 @@
       }
     }
 
+    @media(max-width:600px) {
+      .program .ttl-c {
+        font-size: clamp(16px, 4.8vw, 22px);
+        white-space: nowrap
+      }
+    }
+
     @media(max-width:400px) {
       .hero h1 {
         font-size: 28px
@@ -2600,11 +2607,11 @@
   <div id="lb" onclick="closeLb()"
     style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
     <button onclick="event.stopPropagation();lbNav(-1)"
-      style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">‹</button>
+      style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.55);border:none;color:#111;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">‹</button>
     <img id="lb-img" src=""
       style="max-width:90vw;max-height:90vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.5);object-fit:contain" />
     <button onclick="event.stopPropagation();lbNav(1)"
-      style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">›</button>
+      style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.55);border:none;color:#111;font-size:28px;width:48px;height:48px;border-radius:50%;cursor:pointer;line-height:1">›</button>
     <button onclick="closeLb()"
       style="position:absolute;top:18px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1">✕</button>
     <div id="lb-count"
