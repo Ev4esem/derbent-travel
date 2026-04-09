@@ -3043,7 +3043,7 @@
 
       try {
         // Отправляем на серверную функцию → MAX бот
-        const res = await fetch('/api/notify', {
+        const res = await fetch('/api/notify.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(json)
