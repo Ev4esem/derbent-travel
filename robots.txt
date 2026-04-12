@@ -5,4 +5,4 @@ Allow: /
 Disallow: /img/thumb/
 
 # Sitemap
-Sitemap: https://derbent-travel.ru/sitemap.xml
+Sitemap: https://trip-derbent.ru/sitemap.xml
