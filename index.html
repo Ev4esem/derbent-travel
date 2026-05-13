@@ -105,8 +105,8 @@
             "position": 1,
             "item": {
               "@type": "TouristTrip",
-              "name": "Гранд Дагестан",
-              "description": "8 дней по лучшим местам Дагестана: Сулакский каньон, Дербент, горные сёла",
+              "name": "Пятидневный тур (Молодёжный)",
+              "description": "5 дней: Сулакский каньон, Гамсутль, Язык Тролля, Хунзах, рафтинг и конная прогулка",
               "touristType": "Активный туризм",
               "offers": {
                 "@type": "Offer",
@@ -120,8 +120,8 @@
             "position": 2,
             "item": {
               "@type": "TouristTrip",
-              "name": "Жемчужины Кавказа",
-              "description": "5 дней: горные аулы, ущелья и панорамы Кавказского хребта",
+              "name": "Трёхдневный тур (Молодёжный)",
+              "description": "3 дня: Сулакский каньон, Язык Тролля, Хунзах, рафтинг и конная прогулка",
               "touristType": "Активный туризм",
               "offers": {
                 "@type": "Offer",
@@ -135,12 +135,27 @@
             "position": 3,
             "item": {
               "@type": "TouristTrip",
-              "name": "Сулакский каньон (Премиум)",
-              "description": "3 дня: самый глубокий каньон Европы, бирюзовая вода и горные пейзажи",
+              "name": "Трёхдневный тур (Небо в горах)",
+              "description": "3 дня: Сулакский каньон, Язык Тролля, Дербент, Экраноплан Лунь",
               "touristType": "Активный туризм",
               "offers": {
                 "@type": "Offer",
-                "price": "18500",
+                "price": "28000",
+                "priceCurrency": "RUB"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "TouristTrip",
+              "name": "Сулак Премиум",
+              "description": "Однодневная экскурсия: Сулакский каньон, катер, пещера Нохъо, Бархан Сарыкум",
+              "touristType": "Активный туризм",
+              "offers": {
+                "@type": "Offer",
+                "price": "5500",
                 "priceCurrency": "RUB"
               }
             }
@@ -2275,52 +2290,75 @@
         </div>
       </div>
       <div class="tours-grid" id="tg">
-        <!-- Тур 1 -->
-        <div class="tc" data-type="multi">
+        <!-- Тур 1 — Пятидневный (Молодёжный) -->
+        <div class="tc" data-type="multi" onclick="window.location.href='tours/5days-youth.html'" style="cursor:pointer">
           <div class="tc-img">
-            <img src="img/opt/photo_01.jpg" alt="Гранд Дагестан" />
-            <span class="tbadge">3 дня / 2 ночи</span>
-
+            <img src="img/opt/photo_18.jpg" alt="Пятидневный молодёжный тур" />
+            <span class="tbadge hot">Молодёжный • 5 дней</span>
           </div>
           <div class="tc-body">
-            <h3>Гранд Дагестан</h3>
-            <div class="tc-loc">🏔️&nbsp;Сулакский каньон • Гоор • Язык Тролля • Хунзах</div>
+            <h3>Пятидневный тур</h3>
+            <div class="tc-loc">🏔️&nbsp;Сулак • Гамсутль • Язык Тролля • Хунзах • Рафтинг</div>
             <div class="tc-inc">
               <span class="itag">📶 Отель</span>
               <span class="itag">🍽️ Питание</span>
-              <span class="itag">🚗 Трансфер</span>
-            </div>
-            <div class="tc-ft">
-              <div>
-                <div class="tc-pl">Стоимость от</div>
-                <div class="tc-price">25 000 ₽</div>
-              </div>
-              <button class="tc-btn" onclick="goToBooking()">→</button>
-            </div>
-          </div>
-        </div>
-        <!-- Тур 2 -->
-        <div class="tc" data-type="multi">
-          <div class="tc-img">
-            <img src="img/opt/photo_03.jpg"
-              alt="Жемчужины Кавказа" />
-            <span class="tbadge hot">Хит продаж • 5 дней</span>
-
-          </div>
-          <div class="tc-body">
-            <h3>Жемчужины Кавказа</h3>
-            <div class="tc-loc">🏔️&nbsp;Сулак • Гамсутль • Хунзах • Дербент</div>
-            <div class="tc-inc">
-              <span class="itag">📶 Отель</span>
-              <span class="itag">🍽️ Питание</span>
-              <span class="itag">✈️ Билеты</span>
+              <span class="itag">🏄 Рафтинг</span>
+              <span class="itag">🐎 Лошади</span>
             </div>
             <div class="tc-ft">
               <div>
                 <div class="tc-pl">Стоимость от</div>
                 <div class="tc-price">42 000 ₽</div>
               </div>
-              <button class="tc-btn" onclick="goToBooking()">→</button>
+              <button class="tc-btn">→</button>
+            </div>
+          </div>
+        </div>
+        <!-- Тур 2 — Трёхдневный (Молодёжный) -->
+        <div class="tc" data-type="multi" onclick="window.location.href='tours/3days-youth.html'" style="cursor:pointer">
+          <div class="tc-img">
+            <img src="img/opt/photo_16.jpg" alt="Трёхдневный молодёжный тур" />
+            <span class="tbadge hot">Молодёжный • 3 дня</span>
+          </div>
+          <div class="tc-body">
+            <h3>Трёхдневный тур (Молодёжный)</h3>
+            <div class="tc-loc">🏔️&nbsp;Сулак • Язык Тролля • Хунзах • Рафтинг • Матлас</div>
+            <div class="tc-inc">
+              <span class="itag">📶 Отель</span>
+              <span class="itag">🍽️ Питание</span>
+              <span class="itag">🏄 Рафтинг</span>
+              <span class="itag">🐎 Лошади</span>
+            </div>
+            <div class="tc-ft">
+              <div>
+                <div class="tc-pl">Стоимость от</div>
+                <div class="tc-price">28 000 ₽</div>
+              </div>
+              <button class="tc-btn">→</button>
+            </div>
+          </div>
+        </div>
+        <!-- Тур 3 — Трёхдневный (Небо в горах) -->
+        <div class="tc" data-type="multi" onclick="window.location.href='tours/3days-sky.html'" style="cursor:pointer">
+          <div class="tc-img">
+            <img src="img/opt/photo_11.jpg" alt="Трёхдневный тур Небо в горах" />
+            <span class="tbadge">3 дня / 2 ночи</span>
+          </div>
+          <div class="tc-body">
+            <h3>Небо в горах</h3>
+            <div class="tc-loc">🏔️&nbsp;Сулак • Язык Тролля • Дербент • Экраноплан Лунь</div>
+            <div class="tc-inc">
+              <span class="itag">📶 Отель</span>
+              <span class="itag">🍽️ Питание</span>
+              <span class="itag">⛵ Катер</span>
+              <span class="itag">🚗 Трансфер</span>
+            </div>
+            <div class="tc-ft">
+              <div>
+                <div class="tc-pl">Стоимость от</div>
+                <div class="tc-price">28 000 ₽</div>
+              </div>
+              <button class="tc-btn">→</button>
             </div>
           </div>
         </div>
@@ -2993,8 +3031,9 @@
               <select name="tour">
                 <option value="">Помогите выбрать</option>
                 <optgroup label="Многодневные туры">
-                  <option>Гранд Дагестан (3 дня)</option>
-                  <option>Жемчужины Кавказа (5 дней)</option>
+                  <option>Пятидневный тур (Молодёжный) — 42 000 ₽</option>
+                  <option>Трёхдневный тур (Молодёжный) — 28 000 ₽</option>
+                  <option>Трёхдневный тур (Небо в горах) — 28 000 ₽</option>
                 </optgroup>
                 <optgroup label="Экскурсии">
                   <option>Экскурсия — Сулак Премиум — 5 500 ₽</option>

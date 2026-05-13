@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Пятидневный тур (Молодёжный) | Derbent Travel</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <meta name="description" content="Пятидневный молодёжный тур по Дагестану — Сулакский каньон, рафтинг, Язык Тролля, Гамсутль, Хунзах, Дербент. Для молодёжи до 40 лет." />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body { font-family: 'Inter', sans-serif; color: #1a2e2e; background: #fff; overflow-x: hidden }
+
+    :root {
+      --teal: #1C4A47;
+      --teal-mid: #2B6260;
+      --orange: #F0A500;
+      --orange-h: #D4920A;
+      --cream: #F8F4EE;
+      --cream2: #FAF7F2;
+      --border: #E5DDD0;
+      --txt-mid: #4A6060;
+      --txt-light: #7A9090;
+    }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 70px; padding: 0 5%; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.06); transition: box-shadow .3s }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08) }
+    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none }
+    .nav-logo-img { height: 44px; width: auto; display: block; object-fit: contain }
+    .nav-menu { display: flex; gap: 32px; list-style: none }
+    .nav-menu a { text-decoration: none; color: #1a2e2e; font-size: 14.5px; font-weight: 500; transition: color .2s }
+    .nav-menu a:hover { color: var(--teal) }
+    .nav-right { display: flex; align-items: center; gap: 18px }
+    .nav-phone { display: flex; align-items: center; gap: 7px; color: var(--orange); font-weight: 600; font-size: 14.5px; text-decoration: none }
+    .nav-phone svg { width: 15px; height: 15px; fill: var(--orange); flex-shrink: 0 }
+    .btn-book { background: var(--teal); color: #fff; padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: background .2s }
+    .btn-book:hover { background: var(--teal-mid) }
+
+    .tour-hero { position: relative; min-height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 80px; background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.6)), url('../img/opt/photo_16.jpg') center/cover no-repeat }
+    .tour-hero-content { position: relative; z-index: 2; max-width: 900px }
+    .tour-badge { display: inline-block; background: #e74c3c; color: #fff; padding: 8px 20px; border-radius: 25px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px }
+    .tour-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 58px); color: #fff; line-height: 1.15; margin-bottom: 12px }
+    .tour-subtitle { font-size: 18px; color: rgba(255,255,255,.85); margin-bottom: 24px }
+    .tour-price { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 28px }
+    .tour-price span { font-size: 16px; font-weight: 400; opacity: .8 }
+    .btn-primary { display: inline-block; background: var(--orange); color: #fff; padding: 16px 40px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background .2s }
+    .btn-primary:hover { background: var(--orange-h) }
+
+    .sec { padding: 80px 5% }
+    .inner { max-width: 1100px; margin: 0 auto }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3.5vw, 36px); color: var(--teal); text-align: center; margin-bottom: 40px }
+
+    /* PROGRAM */
+    .program-section { background: var(--cream) }
+    .day-card { background: #fff; border-radius: 16px; padding: 32px; margin-bottom: 24px; border: 1px solid var(--border) }
+    .day-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap }
+    .day-number { background: var(--teal); color: #fff; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 600 }
+    .day-title { font-size: 20px; font-weight: 700; color: var(--teal) }
+    .day-content h4 { font-size: 16px; font-weight: 600; color: #1a2e2e; margin: 16px 0 8px; display: flex; align-items: center; gap: 8px }
+    .day-content p { font-size: 14px; color: var(--txt-mid); line-height: 1.7; margin-bottom: 12px }
+    .day-content ul { list-style: none; margin-bottom: 16px }
+    .day-content li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 14px; color: var(--txt-mid); line-height: 1.6 }
+    .day-content li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0 }
+    .highlight-box { background: var(--cream2); border-radius: 12px; padding: 16px 20px; margin: 16px 0; border-left: 4px solid var(--orange) }
+    .highlight-box p { margin: 0; font-size: 14px }
+
+    /* INCLUDED */
+    .included-section { background: #fff }
+    .inc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto }
+    .inc-col h3 { font-size: 18px; font-weight: 700; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px }
+    .inc-col ul { list-style: none }
+    .inc-col li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--txt-mid); line-height: 1.5 }
+    .inc-col li:last-child { border-bottom: none }
+    .check { color: #2B8C60; font-weight: 700; font-size: 16px; flex-shrink: 0 }
+    .cross { color: #c0392b; font-weight: 700; font-size: 16px; flex-shrink: 0 }
+
+    /* MEETING POINTS */
+    .meeting-section { background: var(--cream2) }
+    .meeting-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto }
+    .meeting-card { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid var(--border) }
+    .meeting-card h4 { font-size: 15px; font-weight: 600; color: var(--teal); margin-bottom: 8px }
+    .meeting-card p { font-size: 13px; color: var(--txt-mid); line-height: 1.5 }
+    .meeting-time { display: inline-block; background: var(--orange); color: #fff; padding: 4px 10px; border-radius: 15px; font-size: 12px; font-weight: 600; margin-bottom: 8px }
+
+    /* GALLERY */
+    .gallery-section { background: #fff }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 1000px; margin: 0 auto }
+    .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform .3s }
+    .gallery-grid img:hover { transform: scale(1.03) }
+
+    /* BOOKING */
+    .tour-booking { background: var(--teal); padding: 80px 5% }
+    .booking-card { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px }
+    .booking-card h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--teal); text-align: center; margin-bottom: 8px }
+    .booking-card .subtitle { text-align: center; color: var(--txt-mid); font-size: 14px; margin-bottom: 30px }
+    .fg { margin-bottom: 18px }
+    .fg label { display: block; font-size: 13px; font-weight: 600; color: #1a2e2e; margin-bottom: 6px }
+    .fg input, .fg select { width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 15px; font-family: inherit; transition: border-color .2s }
+    .fg input:focus, .fg select:focus { outline: none; border-color: var(--teal) }
+    .btn-form { width: 100%; padding: 16px; background: var(--orange); color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s }
+    .btn-form:hover { background: var(--orange-h) }
+    .fnote { text-align: center; font-size: 12px; color: var(--txt-light); margin-top: 14px }
+
+    footer { background: #0F2928; padding: 60px 5% 30px; color: rgba(255,255,255,.7) }
+    .ft-in { max-width: 1200px; margin: 0 auto }
+    .ft-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.1) }
+    .ft-desc { font-size: 14px; line-height: 1.7; margin-top: 16px; color: rgba(255,255,255,.58) }
+    .ft-col h4 { color: #fff; font-size: 15px; margin-bottom: 18px }
+    .ft-links { list-style: none }
+    .ft-links li { margin-bottom: 10px }
+    .ft-links a { color: rgba(255,255,255,.58); text-decoration: none; font-size: 14px; transition: color .2s }
+    .ft-links a:hover { color: #fff }
+    .ft-ci { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px }
+    .ft-bot { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; font-size: 13px; flex-wrap: wrap; gap: 16px }
+    .ft-bot a { color: rgba(255,255,255,.5); text-decoration: none; margin-left: 20px }
+    .ft-social { display: flex; gap: 10px; margin-top: 20px }
+    .soc { width: 36px; height: 36px; background: rgba(255,255,255,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 13px; transition: background .2s }
+    .soc:hover { background: var(--orange) }
+
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px }
+    .burger span { width: 24px; height: 2px; background: var(--teal); border-radius: 2px }
+
+    @media (max-width: 900px) { .ft-top { grid-template-columns: 1fr 1fr } .inc-grid { grid-template-columns: 1fr } .gallery-grid { grid-template-columns: repeat(2, 1fr) } }
+    @media (max-width: 768px) { .nav-menu, .nav-phone { display: none } .burger { display: flex } .tour-hero { min-height: 65vh; padding: 100px 5% 60px } .ft-top { grid-template-columns: 1fr; text-align: center } .ft-social { justify-content: center } .ft-bot { flex-direction: column; text-align: center } .day-header { flex-direction: column; align-items: flex-start } }
+
+    .wa-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,.25); z-index: 998; transition: transform .2s }
+    .wa-float:hover { transform: scale(1.08) }
+  </style>
+</head>
+
+<body>
+  <nav id="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../img/logo.png" alt="Derbent Travel" class="nav-logo-img" />
+    </a>
+    <ul class="nav-menu">
+      <li><a href="../index.html#tours">Туры</a></li>
+      <li><a href="../index.html#about">О нас</a></li>
+      <li><a href="../index.html#program">Программа</a></li>
+      <li><a href="../index.html#reviews">Отзывы</a></li>
+      <li><a href="../index.html#contacts">Контакты</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+79898945005" class="nav-phone">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.55.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+        +7 (989) 894-50-05
+      </a>
+      <a href="#tour-booking" class="btn-book">Оставить заявку</a>
+      <button class="burger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tour-hero">
+    <div class="tour-hero-content">
+      <span class="tour-badge">Молодёжный тур • до 40 лет</span>
+      <h1>Пятидневный тур по Дагестану</h1>
+      <p class="tour-subtitle">Сулакский каньон • Рафтинг • Язык Тролля • Гамсутль • Хунзах • Дербент</p>
+      <div class="tour-price">от 42 000 ₽ <span>/ чел.</span></div>
+      <a href="#tour-booking" class="btn-primary">Забронировать тур</a>
+    </div>
+  </section>
+
+  <!-- MEETING POINTS -->
+  <section class="sec meeting-section">
+    <div class="inner">
+      <h2 class="sec-title">Точки сбора</h2>
+      <div class="meeting-grid">
+        <div class="meeting-card">
+          <span class="meeting-time">5:10</span>
+          <h4>Дербент</h4>
+          <p>ТЦ «Россия», ул. Агасиева 22</p>
+        </div>
+        <div class="meeting-card">
+          <span class="meeting-time">6:10</span>
+          <h4>Избербаш</h4>
+          <p>ул. Буйнакского, д.113 (Кольцо Буйнакского, возле Сбербанка)</p>
+        </div>
+        <div class="meeting-card">
+          <span class="meeting-time">7:00</span>
+          <h4>Аэропорт Уйташ</h4>
+          <p>Идеально для тех, кто прибывает в день начала тура</p>
+        </div>
+        <div class="meeting-card">
+          <span class="meeting-time">8:00</span>
+          <h4>Махачкала</h4>
+          <p>Южная автостанция, ул. Амет-Хана Султана, 344</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="sec program-section">
+    <div class="inner">
+      <h2 class="sec-title">Программа тура</h2>
+
+      <!-- День 1 -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-number">День 1</span>
+          <span class="day-title">Сулакский каньон, катер, Бархан и пещера Нохъо</span>
+        </div>
+        <div class="day-content">
+          <ul>
+            <li><strong>Бархан Сарыкум</strong> — крупнейший бархан в Европе, идеальное место для эффектных фото на фоне золотистых песков</li>
+            <li><strong>Сулакский каньон</strong> — захватывающее плавание под каскадами водопадов, спуск к причалу на мощных джипах</li>
+            <li><strong>Пещера «Нохъо»</strong> — три пещеры, смотровые площадки и лабиринты, подвесной мост на высоте 60 м над рекой Сулак</li>
+            <li><strong>Обед</strong> — ресторан «КАВКАЗ»: свежая форель, шашлык или аварский хинкал</li>
+            <li><strong>Этнокомплекс «Главрыба»</strong> — комплекс на берегу реки Сулак с видом на горные пейзажи</li>
+            <li><strong>Смотровая «Хадум-Баш»</strong> — пос. Дубки, 860 м над уровнем моря</li>
+            <li><strong>Чиркейское водохранилище</strong> — крупнейшее на Северном Кавказе, вечерний закат</li>
+          </ul>
+          <div class="highlight-box">
+            <p><strong>Вечер:</strong> Заселение в горах. Ужин с национальным аварским блюдом. Встреча у костра: легенды от гида и атмосфера единения с природой.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- День 2 -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-number">День 2</span>
+          <span class="day-title">Язык Тролля, рафтинг, Гоор и Карадахская теснина</span>
+        </div>
+        <div class="day-content">
+          <ul>
+            <li><strong>Карадахская теснина</strong> — самая высокогорная в России: ширина 2-4 м, высота 170 м, длина 500+ м</li>
+            <li><strong>Гоор</strong> — аул на краю пропасти, оборонительные башни XVII века, смотровые площадки</li>
+            <li><strong>«Язык Тролля»</strong> — скала над бездной глубиной 1000 м, панорамный вид на долину Аварского Койсу</li>
+            <li><strong>Обед в Гооре</strong> — блюда по вековым рецептам</li>
+            <li><strong>Датунский храм</strong> — древнейшая христианская церковь Дагестана (XI век)</li>
+            <li><strong>Рафтинг</strong> — пороги 3-4 категории на 20 км, инструктор, гидрокостюмы, всё оборудование</li>
+          </ul>
+          <div class="highlight-box">
+            <p><strong>Вечер:</strong> Ужин и вечерняя программа на выбор: посиделки у костра, просмотр фильма или развлекательные игры.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- День 3 -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-number">День 3</span>
+          <span class="day-title">Аул-призрак Гамсутль и Салтинский водопад</span>
+        </div>
+        <div class="day-content">
+          <ul>
+            <li><strong>Аул-призрак Гамсутль</strong> — «дагестанский Мачу-Пикчу», древнейшее поселение на высоте 1500 м</li>
+            <li><strong>Подъём на УАЗиках</strong> — последний отрезок пешком (~40 мин) или верхом на лошади (+1000₽)</li>
+            <li><strong>Салтинский подземный водопад</strong> — уникальный водопад внутри пещеры</li>
+          </ul>
+          <div class="highlight-box">
+            <p><strong>После обеда:</strong> Переезд в Дербент и заселение в отель.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- День 4 -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-number">День 4</span>
+          <span class="day-title">Хунзахские водопады, Матлас, конная прогулка</span>
+        </div>
+        <div class="day-content">
+          <ul>
+            <li><strong>Хунзахское плато</strong> — каменная сцена длиной 29 км на высоте 1700 м</li>
+            <li><strong>Водопад Итлятляр</strong> — поток с высоты 100 м</li>
+            <li><strong>Водопад Тобот</strong> — признанный красавец Дагестана, 70-метровая высота</li>
+            <li><strong>Аварская кухня</strong> — дегустация традиционных блюд, абрикосовая каша</li>
+            <li><strong>Экстрим-парк Матлас</strong> — Ханский водопад, Каменная чаша</li>
+            <li><strong>Конная прогулка</strong> — по Матласскому плато с инструкторами</li>
+          </ul>
+          <div class="highlight-box">
+            <p><strong>Для адреналина:</strong> Прыжок с тарзанки и зиплайн над пропастью (оплачивается отдельно, согласовать с гидом).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- День 5 -->
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-number">День 5</span>
+          <span class="day-title">Дербент — древний город и экраноплан «Лунь»</span>
+        </div>
+        <div class="day-content">
+          <ul>
+            <li><strong>Экраноплан «Лунь»</strong> — гибрид самолёта и корабля, впечатления гарантированы</li>
+            <li><strong>Цитадель «Нарын-кала»</strong> — лабиринты старинных улочек магалов</li>
+            <li><strong>Джума-мечеть</strong> — старейшая в России, святыня с тысячелетней историей</li>
+            <li><strong>Восточный базар</strong> — буйство красок и ароматов</li>
+            <li><strong>Сувенирный магазин</strong> — серебро, папахи, ножи, кинжалы, ковры</li>
+            <li><strong>Национальный обед</strong> — блюда народов Южного Дагестана</li>
+            <li><strong>Фото в костюмах</strong> — станьте горянкой или джигитом на один день!</li>
+          </ul>
+          <div class="highlight-box">
+            <p><strong>Окончание тура:</strong> ~18:00. Трансфер в аэропорт (рекомендуем вылет после 19:00), на автостанцию Махачкалы или в Избербаш.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUDED -->
+  <section class="sec included-section">
+    <div class="inner">
+      <h2 class="sec-title">Что входит в стоимость</h2>
+      <div class="inc-grid">
+        <div class="inc-col">
+          <h3><span class="check">✓</span> Включено</h3>
+          <ul>
+            <li><span class="check">✓</span> Проживание в отеле в горах (2х, 3х, 4х местное)</li>
+            <li><span class="check">✓</span> Питание: завтраки, обеды, ужины — все национальные блюда</li>
+            <li><span class="check">✓</span> Комфортный транспорт, гид и водитель</li>
+            <li><span class="check">✓</span> Все входные билеты</li>
+            <li><span class="check">✓</span> Джипинг</li>
+            <li><span class="check">✓</span> Все экскурсии на протяжении тура</li>
+            <li><span class="check">✓</span> Катание на катере по каньону</li>
+            <li><span class="check">✓</span> Рафтинг по Аварскому Койсу</li>
+            <li><span class="check">✓</span> Катание на лошадях</li>
+            <li><span class="check">✓</span> Активности, подарки и развлечения</li>
+            <li><span class="check">✓</span> Национальная одежда для фотосессии (папаха, костюмы, кинжал)</li>
+            <li><span class="check">✓</span> Трансфер из/в аэропорт</li>
+            <li><span class="check">✓</span> Тех. поддержка 24/7</li>
+            <li><span class="check">✓</span> Помощь в выборе отелей до/после тура</li>
+          </ul>
+        </div>
+        <div class="inc-col">
+          <h3><span class="cross">✗</span> Не включено</h3>
+          <ul>
+            <li><span class="cross">✗</span> Авиабилеты из/в Дагестан</li>
+            <li><span class="cross">✗</span> Личные расходы (сувениры и т.д.)</li>
+            <li><span class="cross">✗</span> Зип-лайн и тарзанка</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="sec gallery-section">
+    <div class="inner">
+      <h2 class="sec-title">Фотографии</h2>
+      <div class="gallery-grid">
+        <img src="../img/сулакский.jpg" alt="Сулакский каньон" loading="lazy" />
+        <img src="../img/opt/photo_16.jpg" alt="Язык Тролля" loading="lazy" />
+        <img src="../img/opt/photo_03.jpg" alt="Гамсутль" loading="lazy" />
+        <img src="../img/tobot2.jpg" alt="Водопад Тобот" loading="lazy" />
+        <img src="../img/тесница.jpg" alt="Карадахская теснина" loading="lazy" />
+        <img src="../img/opt/photo_01.jpg" alt="Дербент" loading="lazy" />
+        <img src="../img/opt/photo_18.jpg" alt="Горная река" loading="lazy" />
+        <img src="../img/opt/photo_17.jpg" alt="Группа туристов" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="tour-booking" id="tour-booking">
+    <div class="booking-card">
+      <h2>Забронировать тур</h2>
+      <p class="subtitle">Мы свяжемся с вами в течение 15 минут</p>
+      <form id="bookingForm" onsubmit="return sendForm(event)">
+        <input type="hidden" name="tour" value="Пятидневный тур (Молодёжный) — 42 000 ₽" />
+        <div class="fg">
+          <label>Ваше имя</label>
+          <input type="text" name="name" placeholder="Иван Иванов" required />
+        </div>
+        <div class="fg">
+          <label>Телефон</label>
+          <input type="tel" name="phone" id="phoneInput" placeholder="+7 999 000 00 00" required autocomplete="tel" />
+          <span id="phoneError" style="color:#c0392b;font-size:13px;display:none;margin-top:4px">Введите номер полностью</span>
+        </div>
+        <div class="fg">
+          <label>Желаемая дата начала</label>
+          <input type="date" name="date" />
+        </div>
+        <div class="fg">
+          <label>Количество человек</label>
+          <select name="people">
+            <option>1 человек</option>
+            <option>2 человека</option>
+            <option>3 человека</option>
+            <option>4+ человека</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-form">Отправить заявку</button>
+        <p class="fnote">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-in">
+      <div class="ft-top">
+        <div>
+          <a href="../index.html" class="nav-logo">
+            <img src="../img/logo.png" alt="DerbentTravel" class="nav-logo-img" style="height:40px" />
+          </a>
+          <p class="ft-desc">Авторские туры по самым красивым местам Дагестана. Откройте для себя горы, каньоны и гостеприимство Кавказа.</p>
+          <div class="ft-social">
+            <a class="soc" href="#" title="ВКонтакте">ВК</a>
+            <a class="soc" href="#" title="Telegram">✈</a>
+            <a class="soc" href="#" title="WhatsApp">WA</a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h4>Меню</h4>
+          <ul class="ft-links">
+            <li><a href="../index.html#tours">Туры</a></li>
+            <li><a href="../index.html#about">О компании</a></li>
+            <li><a href="../index.html#reviews">Отзывы</a></li>
+            <li><a href="../index.html#contacts">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Туры</h4>
+          <ul class="ft-links">
+            <li><a href="5days-youth.html">5 дней (Молодёжный)</a></li>
+            <li><a href="3days-youth.html">3 дня (Молодёжный)</a></li>
+            <li><a href="3days-sky.html">3 дня (Небо в горах)</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Контакты</h4>
+          <div class="ft-ci"><span>📞</span><span>+7 (989) 894-50-05</span></div>
+          <div class="ft-ci"><span>💬</span><a href="https://wa.me/79898945005" style="color:rgba(255,255,255,.58);text-decoration:none">WhatsApp</a></div>
+          <div class="ft-ci"><span>📍</span><span>г. Дербент, ул. Х. Тагиева 35Б</span></div>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <span>© 2023 ООО «ДЕРБЕНТ-ТРЕВЕЛ». Все права защищены.</span>
+        <div>
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Договор оферты</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/79898945005" class="wa-float" title="WhatsApp">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50) })
+
+    const phoneInput = document.getElementById('phoneInput')
+    const phoneError = document.getElementById('phoneError')
+
+    phoneInput.addEventListener('input', function () {
+      let digits = this.value.replace(/\D/g, '')
+      if (digits.startsWith('8')) digits = '7' + digits.slice(1)
+      if (digits.length > 0 && !digits.startsWith('7')) digits = '7' + digits
+      digits = digits.slice(0, 11)
+      let formatted = ''
+      if (digits.length > 0) formatted = '+7'
+      if (digits.length > 1) formatted += ' ' + digits.slice(1, 4)
+      if (digits.length > 4) formatted += ' ' + digits.slice(4, 7)
+      if (digits.length > 7) formatted += ' ' + digits.slice(7, 9)
+      if (digits.length > 9) formatted += ' ' + digits.slice(9, 11)
+      this.value = formatted
+      if (digits.length > 0 && digits.length < 11) { phoneError.style.display = 'block'; this.style.borderColor = '#c0392b' }
+      else { phoneError.style.display = 'none'; this.style.borderColor = digits.length === 11 ? '#2B8C60' : '' }
+    })
+
+    async function sendForm(e) {
+      e.preventDefault()
+      const form = e.target, btn = form.querySelector('.btn-form')
+      btn.textContent = 'Отправляем...'; btn.disabled = true
+      const data = new FormData(form)
+      const phoneDigits = (data.get('phone') || '').replace(/\D/g, '')
+      if (phoneDigits.length !== 11) { phoneError.style.display = 'block'; phoneInput.style.borderColor = '#c0392b'; phoneInput.focus(); btn.textContent = 'Отправить заявку'; btn.disabled = false; return false }
+      const json = { name: data.get('name') || '', phone: data.get('phone') || '', tour: data.get('tour') || '', date: data.get('date') || '', people: data.get('people') || '' }
+      try {
+        const res = await fetch('/api/notify.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(json) })
+        const result = await res.json()
+        if (res.ok && result.success) { btn.textContent = '✓ Заявка отправлена!'; btn.style.background = '#2B8C60'; form.reset(); setTimeout(() => { btn.textContent = 'Отправить заявку'; btn.style.background = ''; btn.disabled = false }, 4000) }
+        else { throw new Error(result.error || 'Ошибка сервера') }
+      } catch (err) { console.error('sendForm error:', err); btn.textContent = '✗ Ошибка, попробуйте снова'; btn.style.background = '#c0392b'; btn.disabled = false; setTimeout(() => { btn.textContent = 'Отправить заявку'; btn.style.background = '' }, 3500) }
+      return false
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const tgt = document.querySelector(a.getAttribute('href')); if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth' }) } }) })
+  </script>
+</body>
+</html>
