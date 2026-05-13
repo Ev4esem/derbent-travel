@@ -102,8 +102,9 @@
     .gallery-grid img:hover { transform: scale(1.03) }
 
     /* BOOKING */
-    .tour-booking { background: var(--teal); padding: 80px 5% }
-    .booking-card { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px }
+    .tour-booking { position: relative; padding: 80px 5%; background: linear-gradient(135deg, #0d2e2c 0%, #1C4A47 60%, #2B6260 100%) }
+    .tour-booking::before { content: ''; position: absolute; inset: 0; background: url('../img/тесница.jpg') center/cover no-repeat; opacity: .12 }
+    .booking-card { position: relative; z-index: 2; max-width: 500px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px }
     .booking-card h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--teal); text-align: center; margin-bottom: 8px }
     .booking-card .subtitle { text-align: center; color: var(--txt-mid); font-size: 14px; margin-bottom: 30px }
     .fg { margin-bottom: 18px }
